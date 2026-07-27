@@ -1,0 +1,65 @@
+{
+  "generatedAt": "2026-07-27T17:35:32.477Z",
+  "seasons": [
+    {
+      "id": "2021",
+      "label": "2021",
+      "year": 2021,
+      "file": "data/vysledky-2021.json",
+      "sessions": 69,
+      "players": 15
+    },
+    {
+      "id": "2022",
+      "label": "2022",
+      "year": 2022,
+      "file": "data/vysledky-2022.json",
+      "sessions": 51,
+      "players": 12
+    },
+    {
+      "id": "2023",
+      "label": "2023",
+      "year": 2023,
+      "file": "data/vysledky-2023.json",
+      "sessions": 52,
+      "players": 11
+    },
+    {
+      "id": "2024",
+      "label": "2024",
+      "year": 2024,
+      "file": "data/vysledky-2024.json",
+      "sessions": 63,
+      "players": 12
+    },
+    {
+      "id": "2025",
+      "label": "2025",
+      "year": 2025,
+      "file": "data/vysledky-2025.json",
+      "sessions": 65,
+      "players": 10
+    },
+    {
+      "id": "2026",
+      "label": "2026",
+      "year": 2026,
+      "file": "data/vysledky-2026.json",
+      "sessions": 41,
+      "players": 9
+    }
+  ],
+  "kredit": {
+    "file": "data/kredit.json",
+    "players": 14
+  },
+  "issues": [
+    "Výsledky 2021: 9 rozdílů v profitu (viz log)",
+    "Výsledky 2022: 14 rozdílů v profitu (viz log)",
+    "Výsledky 2023: 21 rozdílů v profitu (viz log)",
+    "Výsledky 2024: 49 rozdílů v profitu (viz log)",
+    "Výsledky 2025: 49 rozdílů v profitu (viz log)",
+    "Výsledky 2026: 14 rozdílů v profitu (viz log)"
+  ]
+}
