@@ -83,6 +83,6 @@ jobs:
               cat data/index.json
               echo '```'
             else
-              echo "Soubor \`data/index.json\` nebyl vygenerován – viz log kroku výše."
+              echo "Soubor \`data/index.json\` nebyl vygenerován – důvod je v bloku výše nebo v logu kroku _Stáhnout data ze Sheets_."
             fi
           } >> "$GITHUB_STEP_SUMMARY"

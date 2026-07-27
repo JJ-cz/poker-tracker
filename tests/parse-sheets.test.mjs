@@ -11,8 +11,10 @@ import test from 'node:test';
 
 import {
   normalizeHeader,
+  normalizeSheetId,
   parseKreditSheet,
   parseResultsSheet,
+  parseServiceAccountKey,
   toIsoDate,
   toNumber,
 } from '../scripts/parse-sheets.mjs';
@@ -147,4 +149,37 @@ test('kredit: rozdíl proti tabulce se nahlásí, prázdný hráč se vynechá',
 
 test('kredit bez sloupce Datum je chyba, ne tichý průchod', () => {
   assert.throws(() => parseKreditSheet('kredit', [['A', 'B'], [1, 2]]), /Datum/);
+});
+
+test('ID sešitu se vezme i z celého odkazu', () => {
+  const id = '1AbC-dEf_2GhI3jKlMnOpQrStUvWxYz';
+  assert.equal(normalizeSheetId(id, 'POKER_SHEET_ID'), id);
+  assert.equal(normalizeSheetId(`https://docs.google.com/spreadsheets/d/${id}/edit#gid=0`, 'X'), id);
+  assert.equal(normalizeSheetId(`https://docs.google.com/spreadsheets/d/${id}`, 'X'), id);
+  assert.throws(() => normalizeSheetId('tohle není id!', 'POKER_SHEET_ID'), /nevypadá jako ID/);
+});
+
+test('klíč service accountu: konkrétní hláška místo kryptické chyby', () => {
+  const key = {
+    type: 'service_account',
+    client_email: 'a@b.iam.gserviceaccount.com',
+    private_key: '-----BEGIN PRIVATE KEY-----\nMIIE\n-----END PRIVATE KEY-----\n',
+  };
+
+  assert.equal(parseServiceAccountKey(JSON.stringify(key)).client_email, key.client_email);
+  assert.throws(() => parseServiceAccountKey('{neplatny'), /není platný JSON/);
+  assert.throws(
+    () => parseServiceAccountKey(`"${JSON.stringify(key).replace(/"/g, '\\"')}"`),
+    /musí být JSON objekt/,
+    'klíč obalený uvozovkami'
+  );
+  assert.throws(
+    () => parseServiceAccountKey(JSON.stringify({ type: 'authorized_user', client_email: 'x', private_key: 'y' })),
+    /service_account/
+  );
+  assert.throws(
+    () => parseServiceAccountKey(JSON.stringify({ type: 'service_account', client_email: 'x' })),
+    /client_email nebo private_key/
+  );
+  assert.throws(() => parseServiceAccountKey(JSON.stringify({ ...key, private_key: 'MIIE...' })), /PEM/);
 });

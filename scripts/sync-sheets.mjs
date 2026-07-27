@@ -22,14 +22,16 @@
  */
 
 import { createSign } from 'node:crypto';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
 import {
   log,
   normalizeHeader,
+  normalizeSheetId,
   parseKreditSheet,
   parseResultsSheet,
+  parseServiceAccountKey,
   warn,
 } from './parse-sheets.mjs';
 
@@ -44,9 +46,24 @@ const SCOPE = 'https://www.googleapis.com/auth/spreadsheets.readonly';
 function requireEnv(name) {
   const value = process.env[name];
   if (!value || !value.trim()) {
-    throw new Error(`Chybí povinná env proměnná ${name}. Zkontroluj GitHub Secrets.`);
+    throw new Error(
+      `Chybí povinná env proměnná ${name}. Přidej ji do Settings → Secrets and variables → Actions.`
+    );
   }
   return value.trim();
+}
+
+/**
+ * Vypíše, co je nastavené – bez hodnot, jen délky a tvar. Když sync spadne,
+ * je z logu hned vidět, jestli je problém v secrets, nebo až v přístupu.
+ */
+function preflight() {
+  const names = ['GOOGLE_SERVICE_ACCOUNT_KEY', 'POKER_SHEET_ID', 'KREDIT_SHEET_ID'];
+  log('preflight – nastavené secrets:');
+  for (const name of names) {
+    const value = process.env[name] ?? '';
+    log(`  ${name}: ${value.trim() ? `nastaveno (${value.trim().length} znaků)` : 'CHYBÍ'}`);
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -147,9 +164,10 @@ async function getSheetValues(spreadsheetId, sheetTitle, token) {
 // ---------------------------------------------------------------------------
 
 async function main() {
-  const credentials = JSON.parse(requireEnv('GOOGLE_SERVICE_ACCOUNT_KEY'));
-  const pokerSheetId = requireEnv('POKER_SHEET_ID');
-  const kreditSheetId = requireEnv('KREDIT_SHEET_ID');
+  preflight();
+  const credentials = parseServiceAccountKey(requireEnv('GOOGLE_SERVICE_ACCOUNT_KEY'));
+  const pokerSheetId = normalizeSheetId(requireEnv('POKER_SHEET_ID'), 'POKER_SHEET_ID');
+  const kreditSheetId = normalizeSheetId(requireEnv('KREDIT_SHEET_ID'), 'KREDIT_SHEET_ID');
   const includeLegacy = /^(1|true|yes|ano)$/i.test(process.env.INCLUDE_LEGACY ?? '');
   const outDir = path.resolve(process.env.OUT_DIR || 'data');
   const generatedAt = new Date().toISOString();
@@ -287,8 +305,22 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+main().catch(async (error) => {
   console.error('[sync] ✖ Sync selhal:', error.message);
   if (process.env.RUNNER_DEBUG) console.error(error);
+
+  // Důvod selhání napiš i do souhrnu běhu – ten je vidět rovnou na stránce
+  // workflow, bez rozklikávání logu.
+  if (process.env.GITHUB_STEP_SUMMARY) {
+    try {
+      await appendFile(
+        process.env.GITHUB_STEP_SUMMARY,
+        `### ❌ Sync selhal\n\n\`\`\`\n${error.message}\n\`\`\`\n\n`,
+        'utf8'
+      );
+    } catch {
+      /* souhrn je jen bonus */
+    }
+  }
   process.exit(1);
 });

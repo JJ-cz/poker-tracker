@@ -369,3 +369,63 @@ export function parseKreditSheet(sheetTitle, rows) {
   };
 }
 
+// ---------------------------------------------------------------------------
+// Validace konfigurace (secrets)
+// ---------------------------------------------------------------------------
+
+/**
+ * Z ID sešitu vytáhne samotné ID, i když je v secretu celá URL
+ * (https://docs.google.com/spreadsheets/d/<ID>/edit).
+ */
+export function normalizeSheetId(value, name) {
+  const fromUrl = value.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+  const id = fromUrl ? fromUrl[1] : value;
+  if (!/^[a-zA-Z0-9-_]+$/.test(id)) {
+    throw new Error(
+      `${name} nevypadá jako ID sešitu ani jako odkaz na sešit. Očekávám tu dlouhý ` +
+        'kód z URL: https://docs.google.com/spreadsheets/d/<TOHLE>/edit'
+    );
+  }
+  if (fromUrl) log(`${name}: z odkazu vytaženo ID ${id}`);
+  return id;
+}
+
+/**
+ * Bezpečné rozparsování klíče service accountu. Nejčastější chyby při vkládání
+ * do secretu (obalení uvozovkami, jen část souboru, prázdné znaky) tady dostanou
+ * konkrétní hlášku místo kryptického „Unexpected token“.
+ */
+export function parseServiceAccountKey(raw) {
+  let credentials;
+  try {
+    credentials = JSON.parse(raw);
+  } catch (error) {
+    throw new Error(
+      'GOOGLE_SERVICE_ACCOUNT_KEY není platný JSON. Do secretu patří CELÝ obsah ' +
+        'staženého .json klíče včetně složených závorek, bez obalujících uvozovek ' +
+        `a bez úprav. (${error.message})`
+    );
+  }
+  if (typeof credentials !== 'object' || credentials === null) {
+    throw new Error('GOOGLE_SERVICE_ACCOUNT_KEY musí být JSON objekt klíče service accountu.');
+  }
+  if (credentials.type && credentials.type !== 'service_account') {
+    throw new Error(
+      `GOOGLE_SERVICE_ACCOUNT_KEY má type="${credentials.type}". Potřebuješ klíč typu ` +
+        'service_account (Service Accounts → Keys → Add key → JSON), ne OAuth client.'
+    );
+  }
+  if (!credentials.client_email || !credentials.private_key) {
+    throw new Error(
+      'GOOGLE_SERVICE_ACCOUNT_KEY neobsahuje client_email nebo private_key – ' +
+        'vypadá to na jiný soubor než klíč service accountu.'
+    );
+  }
+  if (!/-----BEGIN [A-Z ]*PRIVATE KEY-----/.test(credentials.private_key)) {
+    throw new Error(
+      'private_key v GOOGLE_SERVICE_ACCOUNT_KEY nemá tvar PEM klíče – ' +
+        'nejspíš se při kopírování rozbily znaky nového řádku (\\n).'
+    );
+  }
+  return credentials;
+}
