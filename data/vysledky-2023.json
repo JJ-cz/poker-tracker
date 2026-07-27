@@ -2,10 +2,11 @@
   "season": "2023",
   "year": 2023,
   "sheet": "Výsledky 2023",
-  "generatedAt": "2026-07-27T17:35:32.477Z",
+  "generatedAt": "2026-07-27T17:56:53.016Z",
   "sessions": [
     {
       "date": "2023-01-06",
+      "seq": 1,
       "players": [
         {
           "name": "Anička",
@@ -83,7 +84,13 @@
           "profit": -32,
           "sheetProfit": -32,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-06",
+      "seq": 2,
+      "players": [
         {
           "name": "JJ",
           "finish": 1,
@@ -171,7 +178,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-06",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -248,7 +261,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-06",
+      "seq": 4,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -297,6 +316,7 @@
     },
     {
       "date": "2023-01-13",
+      "seq": 1,
       "players": [
         {
           "name": "Aťourek",
@@ -341,7 +361,13 @@
           "profit": -92,
           "sheetProfit": -92,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-13",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -407,7 +433,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-13",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -462,7 +494,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-13",
+      "seq": 4,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -522,6 +560,7 @@
     },
     {
       "date": "2023-01-20",
+      "seq": 1,
       "players": [
         {
           "name": "Aťourek",
@@ -610,7 +649,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-20",
+      "seq": 2,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -687,7 +732,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-20",
+      "seq": 3,
+      "players": [
         {
           "name": "Lůďa",
           "finish": 1,
@@ -753,7 +804,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-20",
+      "seq": 4,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -797,7 +854,13 @@
           "profit": -225,
           "sheetProfit": -225,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-20",
+      "seq": 5,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -835,6 +898,7 @@
     },
     {
       "date": "2023-01-27",
+      "seq": 1,
       "players": [
         {
           "name": "Hensn",
@@ -901,7 +965,13 @@
           "profit": -32,
           "sheetProfit": -32,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-27",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -967,7 +1037,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-27",
+      "seq": 3,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -1022,7 +1098,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-01-27",
+      "seq": 4,
+      "players": [
         {
           "name": "JJ",
           "finish": 1,
@@ -1071,6 +1153,7 @@
     },
     {
       "date": "2023-02-03",
+      "seq": 1,
       "players": [
         {
           "name": "Pumča",
@@ -1148,7 +1231,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-02-03",
+      "seq": 2,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -1214,7 +1303,13 @@
           "profit": -152,
           "sheetProfit": -152,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-02-03",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -1280,7 +1375,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-02-03",
+      "seq": 4,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -1351,6 +1452,7 @@
     },
     {
       "date": "2023-02-10",
+      "seq": 1,
       "players": [
         {
           "name": "Anička",
@@ -1428,7 +1530,13 @@
           "profit": -62,
           "sheetProfit": -62,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-02-10",
+      "seq": 2,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -1505,7 +1613,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-02-10",
+      "seq": 3,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -1576,6 +1690,7 @@
     },
     {
       "date": "2023-02-17",
+      "seq": 1,
       "players": [
         {
           "name": "Pumča",
@@ -1664,7 +1779,13 @@
           "profit": -92,
           "sheetProfit": -92,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-02-17",
+      "seq": 2,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -1752,7 +1873,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-02-17",
+      "seq": 3,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -1845,6 +1972,7 @@
     },
     {
       "date": "2023-02-24",
+      "seq": 1,
       "players": [
         {
           "name": "Hensn",
@@ -1933,7 +2061,13 @@
           "profit": -143,
           "sheetProfit": -152,
           "profitMismatch": true
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-02-24",
+      "seq": 2,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -2021,7 +2155,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-02-24",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -2098,7 +2238,13 @@
           "profit": -152,
           "sheetProfit": -152,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-02-24",
+      "seq": 4,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -2147,6 +2293,7 @@
     },
     {
       "date": "2023-03-03",
+      "seq": 1,
       "players": [
         {
           "name": "JJ",
@@ -2224,7 +2371,13 @@
           "profit": -122,
           "sheetProfit": -122,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-03",
+      "seq": 2,
+      "players": [
         {
           "name": "Lůďa",
           "finish": 1,
@@ -2312,7 +2465,13 @@
           "profit": -52,
           "sheetProfit": -52,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-03",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -2383,6 +2542,7 @@
     },
     {
       "date": "2023-03-10",
+      "seq": 1,
       "players": [
         {
           "name": "Jiří",
@@ -2482,7 +2642,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-10",
+      "seq": 2,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -2581,7 +2747,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-10",
+      "seq": 3,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -2652,6 +2824,7 @@
     },
     {
       "date": "2023-03-17",
+      "seq": 1,
       "players": [
         {
           "name": "Martin",
@@ -2751,7 +2924,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-17",
+      "seq": 2,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -2839,7 +3018,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-17",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -2916,7 +3101,13 @@
           "profit": -252,
           "sheetProfit": -252,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-17",
+      "seq": 4,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -2954,6 +3145,7 @@
     },
     {
       "date": "2023-03-24",
+      "seq": 1,
       "players": [
         {
           "name": "Lůďa",
@@ -3031,7 +3223,13 @@
           "profit": -212,
           "sheetProfit": -212,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-24",
+      "seq": 2,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -3119,7 +3317,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-24",
+      "seq": 3,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -3196,7 +3400,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-24",
+      "seq": 4,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -3234,6 +3444,7 @@
     },
     {
       "date": "2023-03-31",
+      "seq": 1,
       "players": [
         {
           "name": "Anička",
@@ -3300,7 +3511,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-31",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -3366,7 +3583,13 @@
           "profit": -252,
           "sheetProfit": -252,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-31",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -3421,7 +3644,13 @@
           "profit": -152,
           "sheetProfit": -152,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-03-31",
+      "seq": 4,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -3448,6 +3677,7 @@
     },
     {
       "date": "2023-04-07",
+      "seq": 1,
       "players": [
         {
           "name": "Hensn",
@@ -3525,7 +3755,13 @@
           "profit": -62,
           "sheetProfit": -62,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-07",
+      "seq": 2,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -3602,7 +3838,13 @@
           "profit": -52,
           "sheetProfit": -52,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-07",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -3646,7 +3888,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-07",
+      "seq": 4,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -3695,6 +3943,7 @@
     },
     {
       "date": "2023-04-14",
+      "seq": 1,
       "players": [
         {
           "name": "Jiří",
@@ -3805,7 +4054,13 @@
           "profit": -32,
           "sheetProfit": -32,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-14",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -3904,7 +4159,13 @@
           "profit": -52,
           "sheetProfit": -102,
           "profitMismatch": true
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-14",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -3981,7 +4242,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-14",
+      "seq": 4,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -4025,7 +4292,13 @@
           "profit": -245,
           "sheetProfit": -245,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-14",
+      "seq": 5,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -4063,6 +4336,7 @@
     },
     {
       "date": "2023-04-21",
+      "seq": 1,
       "players": [
         {
           "name": "Hensn",
@@ -4129,7 +4403,13 @@
           "profit": -212,
           "sheetProfit": -212,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-21",
+      "seq": 2,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -4195,7 +4475,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-21",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -4261,7 +4547,13 @@
           "profit": -52,
           "sheetProfit": -52,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-21",
+      "seq": 4,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -4332,6 +4624,7 @@
     },
     {
       "date": "2023-04-28",
+      "seq": 1,
       "players": [
         {
           "name": "Aťourek",
@@ -4409,7 +4702,13 @@
           "profit": -122,
           "sheetProfit": -122,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-28",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -4486,7 +4785,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-04-28",
+      "seq": 3,
+      "players": [
         {
           "name": "Kajmi",
           "finish": 1,
@@ -4557,6 +4862,7 @@
     },
     {
       "date": "2023-05-05",
+      "seq": 1,
       "players": [
         {
           "name": "Anička",
@@ -4645,7 +4951,13 @@
           "profit": -62,
           "sheetProfit": -62,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-05-05",
+      "seq": 2,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -4711,7 +5023,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-05-05",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -4771,6 +5089,7 @@
     },
     {
       "date": "2023-05-12",
+      "seq": 1,
       "players": [
         {
           "name": "JJ",
@@ -4848,7 +5167,13 @@
           "profit": -212,
           "sheetProfit": -212,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-05-12",
+      "seq": 2,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -4925,7 +5250,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-05-12",
+      "seq": 3,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -4974,6 +5305,7 @@
     },
     {
       "date": "2023-05-19",
+      "seq": 1,
       "players": [
         {
           "name": "Pumča",
@@ -5051,7 +5383,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-05-19",
+      "seq": 2,
+      "players": [
         {
           "name": "Lůďa",
           "finish": 1,
@@ -5128,7 +5466,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-05-19",
+      "seq": 3,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -5199,6 +5543,7 @@
     },
     {
       "date": "2023-05-26",
+      "seq": 1,
       "players": [
         {
           "name": "Pumča",
@@ -5232,7 +5577,13 @@
           "profit": -52,
           "sheetProfit": -52,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-05-26",
+      "seq": 2,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -5270,6 +5621,7 @@
     },
     {
       "date": "2023-06-02",
+      "seq": 1,
       "players": [
         {
           "name": "Pumča",
@@ -5336,7 +5688,13 @@
           "profit": -122,
           "sheetProfit": -122,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-02",
+      "seq": 2,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -5413,7 +5771,13 @@
           "profit": -152,
           "sheetProfit": -152,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-02",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -5479,7 +5843,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-02",
+      "seq": 4,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -5506,6 +5876,7 @@
     },
     {
       "date": "2023-06-09",
+      "seq": 1,
       "players": [
         {
           "name": "Aťourek",
@@ -5561,7 +5932,13 @@
           "profit": -62,
           "sheetProfit": -62,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-09",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -5616,7 +5993,13 @@
           "profit": -252,
           "sheetProfit": -252,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-09",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -5676,6 +6059,7 @@
     },
     {
       "date": "2023-06-16",
+      "seq": 1,
       "players": [
         {
           "name": "Hensn",
@@ -5753,7 +6137,13 @@
           "profit": -122,
           "sheetProfit": -122,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-16",
+      "seq": 2,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -5830,7 +6220,13 @@
           "profit": -52,
           "sheetProfit": -52,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-16",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -5896,7 +6292,13 @@
           "profit": -102,
           "sheetProfit": -102,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-16",
+      "seq": 4,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -5956,6 +6358,7 @@
     },
     {
       "date": "2023-06-23",
+      "seq": 1,
       "players": [
         {
           "name": "Lůďa",
@@ -6033,7 +6436,13 @@
           "profit": -92,
           "sheetProfit": -92,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-23",
+      "seq": 2,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -6110,7 +6519,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-23",
+      "seq": 3,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -6176,7 +6591,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-23",
+      "seq": 4,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -6225,6 +6646,7 @@
     },
     {
       "date": "2023-06-28",
+      "seq": 1,
       "players": [
         {
           "name": "Lůďa",
@@ -6302,7 +6724,13 @@
           "profit": -152,
           "sheetProfit": -152,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-28",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -6368,7 +6796,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-28",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -6406,6 +6840,7 @@
     },
     {
       "date": "2023-06-30",
+      "seq": 1,
       "players": [
         {
           "name": "Lůďa",
@@ -6461,7 +6896,13 @@
           "profit": -62,
           "sheetProfit": -62,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-30",
+      "seq": 2,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -6516,7 +6957,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-06-30",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -6565,6 +7012,7 @@
     },
     {
       "date": "2023-07-07",
+      "seq": 1,
       "players": [
         {
           "name": "Pumča",
@@ -6631,7 +7079,13 @@
           "profit": -122,
           "sheetProfit": -122,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-07-07",
+      "seq": 2,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -6697,7 +7151,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-07-07",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -6768,6 +7228,7 @@
     },
     {
       "date": "2023-07-14",
+      "seq": 1,
       "players": [
         {
           "name": "Pumča",
@@ -6834,7 +7295,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-07-14",
+      "seq": 2,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -6889,7 +7356,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-07-14",
+      "seq": 3,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -6949,6 +7422,7 @@
     },
     {
       "date": "2023-07-21",
+      "seq": 1,
       "players": [
         {
           "name": "Hensn",
@@ -7015,7 +7489,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-07-21",
+      "seq": 2,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -7092,7 +7572,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-07-21",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -7141,6 +7627,7 @@
     },
     {
       "date": "2023-08-04",
+      "seq": 1,
       "players": [
         {
           "name": "Lůďa",
@@ -7207,7 +7694,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-08-04",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -7273,7 +7766,13 @@
           "profit": -152,
           "sheetProfit": -152,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-08-04",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -7322,6 +7821,7 @@
     },
     {
       "date": "2023-08-11",
+      "seq": 1,
       "players": [
         {
           "name": "Hensn",
@@ -7399,7 +7899,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-08-11",
+      "seq": 2,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -7476,7 +7982,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-08-11",
+      "seq": 3,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -7536,6 +8048,7 @@
     },
     {
       "date": "2023-08-25",
+      "seq": 1,
       "players": [
         {
           "name": "JJ",
@@ -7602,7 +8115,13 @@
           "profit": -152,
           "sheetProfit": -152,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-08-25",
+      "seq": 2,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -7673,6 +8192,7 @@
     },
     {
       "date": "2023-09-01",
+      "seq": 1,
       "players": [
         {
           "name": "Hensn",
@@ -7739,7 +8259,13 @@
           "profit": -122,
           "sheetProfit": -122,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-01",
+      "seq": 2,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -7816,7 +8342,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-01",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -7860,7 +8392,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-01",
+      "seq": 4,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -7893,7 +8431,13 @@
           "profit": -275,
           "sheetProfit": -275,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-01",
+      "seq": 5,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -7926,7 +8470,13 @@
           "profit": -152,
           "sheetProfit": -152,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-01",
+      "seq": 6,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -7959,7 +8509,13 @@
           "profit": -195,
           "sheetProfit": -195,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-01",
+      "seq": 7,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -7997,6 +8553,7 @@
     },
     {
       "date": "2023-09-08",
+      "seq": 1,
       "players": [
         {
           "name": "Martin",
@@ -8041,7 +8598,13 @@
           "profit": -212,
           "sheetProfit": -212,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-08",
+      "seq": 2,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -8085,7 +8648,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-08",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -8129,7 +8698,13 @@
           "profit": -102,
           "sheetProfit": -102,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-08",
+      "seq": 4,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -8167,6 +8742,7 @@
     },
     {
       "date": "2023-09-15",
+      "seq": 1,
       "players": [
         {
           "name": "Pumča",
@@ -8233,7 +8809,13 @@
           "profit": -62,
           "sheetProfit": -62,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-15",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -8299,7 +8881,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-15",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -8348,6 +8936,7 @@
     },
     {
       "date": "2023-09-22",
+      "seq": 1,
       "players": [
         {
           "name": "Hensn",
@@ -8414,7 +9003,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-22",
+      "seq": 2,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -8480,7 +9075,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-22",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -8529,6 +9130,7 @@
     },
     {
       "date": "2023-09-27",
+      "seq": 1,
       "players": [
         {
           "name": "Anička",
@@ -8595,7 +9197,13 @@
           "profit": -152,
           "sheetProfit": -152,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-27",
+      "seq": 2,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -8661,7 +9269,13 @@
           "profit": -102,
           "sheetProfit": -102,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-27",
+      "seq": 3,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -8732,6 +9346,7 @@
     },
     {
       "date": "2023-09-29",
+      "seq": 1,
       "players": [
         {
           "name": "Pumča",
@@ -8776,7 +9391,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-29",
+      "seq": 2,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -8820,7 +9441,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-09-29",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -8869,6 +9496,7 @@
     },
     {
       "date": "2023-10-06",
+      "seq": 1,
       "players": [
         {
           "name": "Anička",
@@ -8924,7 +9552,13 @@
           "profit": -152,
           "sheetProfit": -152,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-10-06",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -8979,7 +9613,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-10-06",
+      "seq": 3,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -9023,7 +9663,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-10-06",
+      "seq": 4,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -9072,6 +9718,7 @@
     },
     {
       "date": "2023-10-13",
+      "seq": 1,
       "players": [
         {
           "name": "Aťourek",
@@ -9138,7 +9785,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-10-13",
+      "seq": 2,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -9204,7 +9857,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-10-13",
+      "seq": 3,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -9275,6 +9934,7 @@
     },
     {
       "date": "2023-10-20",
+      "seq": 1,
       "players": [
         {
           "name": "Anička",
@@ -9330,7 +9990,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-10-20",
+      "seq": 2,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -9385,7 +10051,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-10-20",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -9440,7 +10112,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-10-20",
+      "seq": 4,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -9500,6 +10178,7 @@
     },
     {
       "date": "2023-10-27",
+      "seq": 1,
       "players": [
         {
           "name": "Pumča",
@@ -9555,7 +10234,13 @@
           "profit": -212,
           "sheetProfit": -212,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-10-27",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -9621,7 +10306,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-10-27",
+      "seq": 3,
+      "players": [
         {
           "name": "Lůďa",
           "finish": 1,
@@ -9681,6 +10372,7 @@
     },
     {
       "date": "2023-11-03",
+      "seq": 1,
       "players": [
         {
           "name": "JJ",
@@ -9769,7 +10461,13 @@
           "profit": -92,
           "sheetProfit": -92,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-03",
+      "seq": 2,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -9835,7 +10533,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-03",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -9901,7 +10605,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-03",
+      "seq": 4,
+      "players": [
         {
           "name": "Lůďa",
           "finish": 1,
@@ -9939,6 +10649,7 @@
     },
     {
       "date": "2023-11-10",
+      "seq": 1,
       "players": [
         {
           "name": "Aťourek",
@@ -9983,7 +10694,13 @@
           "profit": -122,
           "sheetProfit": -122,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-10",
+      "seq": 2,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -10038,7 +10755,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-10",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -10093,7 +10816,13 @@
           "profit": -252,
           "sheetProfit": -252,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-10",
+      "seq": 4,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -10137,7 +10866,13 @@
           "profit": -345,
           "sheetProfit": -345,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-10",
+      "seq": 5,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -10186,6 +10921,7 @@
     },
     {
       "date": "2023-11-16",
+      "seq": 1,
       "players": [
         {
           "name": "Anička",
@@ -10241,7 +10977,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-16",
+      "seq": 2,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -10296,7 +11038,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-16",
+      "seq": 3,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -10362,7 +11110,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-16",
+      "seq": 4,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -10422,6 +11176,7 @@
     },
     {
       "date": "2023-11-17",
+      "seq": 1,
       "players": [
         {
           "name": "Martin",
@@ -10499,7 +11254,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-17",
+      "seq": 2,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -10576,7 +11337,13 @@
           "profit": -302,
           "sheetProfit": -302,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-17",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -10647,6 +11414,7 @@
     },
     {
       "date": "2023-11-24",
+      "seq": 1,
       "players": [
         {
           "name": "Lůďa",
@@ -10724,7 +11492,13 @@
           "profit": -152,
           "sheetProfit": -152,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-24",
+      "seq": 2,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -10801,7 +11575,13 @@
           "profit": -252,
           "sheetProfit": -252,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-11-24",
+      "seq": 3,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -10883,6 +11663,7 @@
     },
     {
       "date": "2023-12-01",
+      "seq": 1,
       "players": [
         {
           "name": "Martin",
@@ -10949,7 +11730,13 @@
           "profit": -182,
           "sheetProfit": -182,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-12-01",
+      "seq": 2,
+      "players": [
         {
           "name": "Lůďa",
           "finish": 1,
@@ -11026,7 +11813,13 @@
           "profit": -202,
           "sheetProfit": -202,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-12-01",
+      "seq": 3,
+      "players": [
         {
           "name": "Anička",
           "finish": 1,
@@ -11092,7 +11885,13 @@
           "profit": -52,
           "sheetProfit": -52,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-12-01",
+      "seq": 4,
+      "players": [
         {
           "name": "Aťourek",
           "finish": 1,
@@ -11141,6 +11940,7 @@
     },
     {
       "date": "2023-12-15",
+      "seq": 1,
       "players": [
         {
           "name": "Aťourek",
@@ -11207,7 +12007,13 @@
           "profit": -62,
           "sheetProfit": -62,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-12-15",
+      "seq": 2,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -11273,7 +12079,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-12-15",
+      "seq": 3,
+      "players": [
         {
           "name": "Pumča",
           "finish": 1,
@@ -11322,6 +12134,7 @@
     },
     {
       "date": "2023-12-22",
+      "seq": 1,
       "players": [
         {
           "name": "Aťourek",
@@ -11399,7 +12212,13 @@
           "profit": -122,
           "sheetProfit": -122,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-12-22",
+      "seq": 2,
+      "players": [
         {
           "name": "Martin",
           "finish": 1,
@@ -11487,7 +12306,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-12-22",
+      "seq": 3,
+      "players": [
         {
           "name": "Dexter",
           "finish": 1,
@@ -11575,7 +12400,13 @@
           "profit": -352,
           "sheetProfit": -352,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-12-22",
+      "seq": 4,
+      "players": [
         {
           "name": "Jiří",
           "finish": 1,
@@ -11630,7 +12461,13 @@
           "profit": -245,
           "sheetProfit": -245,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-12-22",
+      "seq": 5,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,
@@ -11690,6 +12527,7 @@
     },
     {
       "date": "2023-12-29",
+      "seq": 1,
       "players": [
         {
           "name": "Anička",
@@ -11767,7 +12605,13 @@
           "profit": -122,
           "sheetProfit": -122,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-12-29",
+      "seq": 2,
+      "players": [
         {
           "name": "Lůďa",
           "finish": 1,
@@ -11844,7 +12688,13 @@
           "profit": -102,
           "sheetProfit": -102,
           "profitMismatch": false
-        },
+        }
+      ]
+    },
+    {
+      "date": "2023-12-29",
+      "seq": 3,
+      "players": [
         {
           "name": "Hensn",
           "finish": 1,

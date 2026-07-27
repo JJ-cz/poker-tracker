@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-27T17:35:32.477Z",
+  "generatedAt": "2026-07-27T17:56:53.016Z",
   "sheet": "Kredit",
   "players": [
     {
@@ -13,12 +13,6 @@
       "balance": 15276,
       "transactions": 86,
       "reportedBalance": 15276
-    },
-    {
-      "name": "1541",
-      "balance": 8012,
-      "transactions": 1,
-      "reportedBalance": null
     },
     {
       "name": "Anička",
@@ -73,23 +67,16 @@
       "balance": 0,
       "transactions": 31,
       "reportedBalance": 0
-    },
-    {
-      "name": "Lordik",
-      "balance": 0,
-      "transactions": 0,
-      "reportedBalance": 0
-    },
-    {
-      "name": "Kuchva",
-      "balance": 0,
-      "transactions": 0,
-      "reportedBalance": 0
     }
   ],
   "cutTotal": 1898,
-  "total": 54914,
+  "total": 46902,
   "rowsCounted": 161,
   "hasSumColumn": true,
+  "ignoredColumns": [
+    "1541",
+    "46902",
+    "48800"
+  ],
   "mismatches": []
 }

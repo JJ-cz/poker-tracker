@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-07-27T17:35:32.477Z",
+  "generatedAt": "2026-07-27T17:56:53.016Z",
   "seasons": [
     {
       "id": "2021",
       "label": "2021",
       "year": 2021,
       "file": "data/vysledky-2021.json",
-      "sessions": 69,
+      "sessions": 152,
       "players": 15
     },
     {
@@ -14,7 +14,7 @@
       "label": "2022",
       "year": 2022,
       "file": "data/vysledky-2022.json",
-      "sessions": 51,
+      "sessions": 172,
       "players": 12
     },
     {
@@ -22,7 +22,7 @@
       "label": "2023",
       "year": 2023,
       "file": "data/vysledky-2023.json",
-      "sessions": 52,
+      "sessions": 185,
       "players": 11
     },
     {
@@ -30,7 +30,7 @@
       "label": "2024",
       "year": 2024,
       "file": "data/vysledky-2024.json",
-      "sessions": 63,
+      "sessions": 266,
       "players": 12
     },
     {
@@ -38,7 +38,7 @@
       "label": "2025",
       "year": 2025,
       "file": "data/vysledky-2025.json",
-      "sessions": 65,
+      "sessions": 336,
       "players": 10
     },
     {
@@ -46,20 +46,26 @@
       "label": "2026",
       "year": 2026,
       "file": "data/vysledky-2026.json",
-      "sessions": 41,
+      "sessions": 172,
       "players": 9
     }
   ],
   "kredit": {
     "file": "data/kredit.json",
-    "players": 14
+    "players": 11
   },
   "issues": [
     "Výsledky 2021: 9 rozdílů v profitu (viz log)",
+    "Výsledky 2021: 1 turnajů s opakovaným jménem (viz log)",
     "Výsledky 2022: 14 rozdílů v profitu (viz log)",
+    "Výsledky 2022: 1 turnajů s nesouvislým pořadím (viz log)",
+    "Výsledky 2022: 1 turnajů s opakovaným jménem (viz log)",
     "Výsledky 2023: 21 rozdílů v profitu (viz log)",
     "Výsledky 2024: 49 rozdílů v profitu (viz log)",
     "Výsledky 2025: 49 rozdílů v profitu (viz log)",
-    "Výsledky 2026: 14 rozdílů v profitu (viz log)"
+    "Výsledky 2025: 1 turnajů s nesouvislým pořadím (viz log)",
+    "Výsledky 2026: 14 rozdílů v profitu (viz log)",
+    "Výsledky 2026: 3 turnajů s opakovaným jménem (viz log)",
+    "kredit: vynechané nehráčské sloupce (1541, 46902, 48800)"
   ]
 }
