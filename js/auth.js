@@ -20,7 +20,7 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-export const PASSWORD_SHA256 = 'CHANGE_ME';
+export const PASSWORD_SHA256 = 'ec3466bebb33324c9f6628869f3691bbe600a744f87b3a913094d570a8c4d120';
 
 const STORAGE_KEY = 'poker-tracker:unlocked';
 const HEX64 = /^[0-9a-f]{64}$/i;
