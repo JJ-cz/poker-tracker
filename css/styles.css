@@ -1,0 +1,597 @@
+/* ==========================================================================
+   Poker Tracker – styly
+   Barvy vycházejí z validované datavizové palety (8 kategoriálních slotů,
+   ordinální modrá řada, diverging modrá↔červená). Světlý i tmavý režim mají
+   vlastní kroky, ne automatický převrat.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* plochy a inkoust */
+  --surface-1: #fcfcfb;
+  --plane: #f9f9f7;
+  --surface-2: #f2f1ec;
+  --text-primary: #0b0b0b;
+  --text-secondary: #52514e;
+  --text-muted: #898781;
+  --grid: #e1e0d9;
+  --axis: #c3c2b7;
+  --border: rgba(11, 11, 11, 0.10);
+  --shadow: 0 1px 2px rgba(11, 11, 11, .06), 0 8px 24px rgba(11, 11, 11, .05);
+
+  /* kategoriální paleta – pořadí slotů je součást CVD bezpečnosti, neměnit */
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+  --series-3: #1baf7a;
+  --series-4: #eda100;
+  --series-5: #e87ba4;
+  --series-6: #008300;
+  --series-7: #4a3aa7;
+  --series-8: #e34948;
+
+  /* ordinální modrá řada (umístění 1., 2., 3. … – nejsvětlejší krok 250) */
+  --ord-1: #0d366b;
+  --ord-2: #184f95;
+  --ord-3: #256abf;
+  --ord-4: #3987e5;
+  --ord-5: #5598e7;
+  --ord-6: #86b6ef;
+  --ord-7: #b7d3f6;
+
+  /* polarita (kredit +/−) */
+  --pos: #2a78d6;
+  --neg: #d03b3b;
+  --good: #006300;
+
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --surface-1: #1a1a19;
+    --plane: #0d0d0d;
+    --surface-2: #232322;
+    --text-primary: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --grid: #2c2c2a;
+    --axis: #383835;
+    --border: rgba(255, 255, 255, 0.10);
+    --shadow: none;
+
+    --series-1: #3987e5;
+    --series-2: #d95926;
+    --series-3: #199e70;
+    --series-4: #c98500;
+    --series-5: #d55181;
+    --series-6: #008300;
+    --series-7: #9085e9;
+    --series-8: #e66767;
+
+    --ord-1: #cde2fb;
+    --ord-2: #9ec5f4;
+    --ord-3: #6da7ec;
+    --ord-4: #3987e5;
+    --ord-5: #256abf;
+    --ord-6: #1c5cab;
+    --ord-7: #184f95;
+
+    --pos: #3987e5;
+    --neg: #e66767;
+    --good: #0ca30c;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --surface-1: #1a1a19;
+  --plane: #0d0d0d;
+  --surface-2: #232322;
+  --text-primary: #ffffff;
+  --text-secondary: #c3c2b7;
+  --text-muted: #898781;
+  --grid: #2c2c2a;
+  --axis: #383835;
+  --border: rgba(255, 255, 255, 0.10);
+  --shadow: none;
+
+  --series-1: #3987e5;
+  --series-2: #d95926;
+  --series-3: #199e70;
+  --series-4: #c98500;
+  --series-5: #d55181;
+  --series-6: #008300;
+  --series-7: #9085e9;
+  --series-8: #e66767;
+
+  --ord-1: #cde2fb;
+  --ord-2: #9ec5f4;
+  --ord-3: #6da7ec;
+  --ord-4: #3987e5;
+  --ord-5: #256abf;
+  --ord-6: #1c5cab;
+  --ord-7: #184f95;
+
+  --pos: #3987e5;
+  --neg: #e66767;
+  --good: #0ca30c;
+}
+
+/* ── základ ───────────────────────────────────────────────────────────── */
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--plane);
+  -webkit-font-smoothing: antialiased;
+}
+
+[hidden] { display: none !important; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: .9em;
+  background: var(--surface-2);
+  padding: .1em .35em;
+  border-radius: 4px;
+}
+
+/* ── zámek ────────────────────────────────────────────────────────────── */
+
+.gate {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(120% 90% at 50% 0%, color-mix(in srgb, var(--series-6) 12%, transparent), transparent 70%),
+    var(--plane);
+  z-index: 100;
+}
+
+.gate__card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 32px 28px;
+  text-align: center;
+}
+
+.gate__suit { font-size: 40px; line-height: 1; color: var(--text-primary); }
+.gate__title { margin: 12px 0 4px; font-size: 22px; letter-spacing: -.01em; }
+.gate__hint { margin: 0 0 20px; color: var(--text-secondary); font-size: 14px; }
+.gate__field { display: block; margin-bottom: 12px; }
+.gate__error {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--neg);
+}
+
+input[type="password"], input[type="text"], .select {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--text-primary);
+  background: var(--surface-1);
+  border: 1px solid var(--axis);
+  border-radius: var(--radius-sm);
+}
+
+input:focus-visible, .select:focus-visible, button:focus-visible {
+  outline: 2px solid var(--series-1);
+  outline-offset: 2px;
+}
+
+.select { cursor: pointer; }
+
+/* ── tlačítka ─────────────────────────────────────────────────────────── */
+
+.btn {
+  font: inherit;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background .12s ease, border-color .12s ease;
+}
+.btn:hover { background: var(--surface-2); }
+.btn--primary {
+  background: var(--series-1);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 600;
+}
+.btn--primary:hover { filter: brightness(1.08); background: var(--series-1); }
+.btn--ghost { background: transparent; }
+.btn--block { width: 100%; }
+.btn--sm { padding: 5px 10px; font-size: 13px; }
+.btn--icon { padding: 8px 10px; }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; }
+
+/* ── topbar ───────────────────────────────────────────────────────────── */
+
+.app { display: flex; flex-direction: column; min-height: 100%; }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 20px;
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.topbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 650;
+  letter-spacing: -.01em;
+  font-size: 17px;
+}
+.topbar__suit { color: var(--series-6); font-size: 20px; }
+.topbar__tools { margin-left: auto; display: flex; gap: 8px; }
+
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; }
+
+.tab {
+  font: inherit;
+  padding: 7px 14px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.tab:hover { background: var(--surface-2); color: var(--text-primary); }
+.tab.is-active {
+  background: var(--surface-2);
+  border-color: var(--border);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ── filtry ───────────────────────────────────────────────────────────── */
+
+.filters {
+  padding: 14px 20px;
+  background: var(--surface-1);
+  border-bottom: 1px solid var(--border);
+}
+
+.filters__row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 120px; }
+.field--grow { flex: 1 1 420px; }
+.field--inline { flex-direction: row; align-items: center; gap: 8px; min-width: 0; }
+.field--inline .select { width: auto; min-width: 150px; }
+
+.field__label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.field__note { text-transform: none; letter-spacing: 0; font-weight: 400; }
+
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.chip {
+  font: inherit;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.chip:hover { background: var(--surface-2); }
+.chip[aria-pressed="true"] { color: var(--text-primary); background: var(--surface-2); }
+.chip[aria-pressed="false"] { opacity: .55; }
+
+.chip__swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--swatch, var(--text-muted));
+  flex: none;
+}
+.chip[aria-pressed="false"] .chip__swatch { background: var(--text-muted); }
+/* druhotné kódování pro 9.+ hráče (stejný odstín, jiný vzor) */
+.chip__swatch[data-style="dashed"] {
+  background: repeating-linear-gradient(90deg, var(--swatch) 0 3px, transparent 3px 5px);
+}
+.chip__swatch[data-style="dotted"] {
+  background: repeating-linear-gradient(90deg, var(--swatch) 0 2px, transparent 2px 4px);
+}
+
+/* ── layout obsahu ────────────────────────────────────────────────────── */
+
+.main { flex: 1; padding: 20px; display: block; }
+
+.section { display: none; }
+.section.is-active { display: flex; flex-direction: column; gap: 20px; }
+
+.card {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+
+.card__head { margin-bottom: 16px; }
+.card__head-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.card__title { margin: 0; font-size: 17px; letter-spacing: -.01em; }
+.card__sub { margin: 6px 0 0; font-size: 13px; color: var(--text-secondary); max-width: 78ch; }
+
+/* segmentovaný přepínač */
+.seg {
+  display: inline-flex;
+  padding: 3px;
+  gap: 2px;
+  background: var(--surface-2);
+  border-radius: 999px;
+  border: 1px solid var(--border);
+}
+.seg__btn {
+  font: inherit;
+  font-size: 13px;
+  padding: 5px 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.seg__btn.is-active {
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ── stat tiles ───────────────────────────────────────────────────────── */
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.tile {
+  background: var(--surface-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+.tile__label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.tile__value {
+  margin-top: 4px;
+  font-size: 26px;
+  font-weight: 650;
+  letter-spacing: -.02em;
+  line-height: 1.15;
+}
+.tile__note { font-size: 13px; color: var(--text-secondary); }
+
+/* ── grafy ────────────────────────────────────────────────────────────── */
+
+/* výška zahrnuje i pás s popisky osy X, aby karta nescrollovala */
+.chart-box { position: relative; height: 320px; }
+.chart-box--tall { height: 440px; }
+
+@media (max-width: 640px) {
+  .chart-box { height: 260px; }
+  .chart-box--tall { height: 360px; }
+}
+
+.chart-empty {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  color: var(--text-muted);
+  font-size: 14px;
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* ── tabulky ──────────────────────────────────────────────────────────── */
+
+.table-wrap { overflow-x: auto; }
+.table-wrap--scroll { max-height: 420px; overflow-y: auto; }
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.table th, .table td {
+  padding: 8px 10px;
+  text-align: right;
+  border-bottom: 1px solid var(--grid);
+  white-space: nowrap;
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  background: var(--surface-1);
+  color: var(--text-muted);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.table th:first-child, .table td:first-child { text-align: left; }
+.table tbody tr:hover td { background: var(--surface-2); }
+.table tfoot td { font-weight: 600; border-top: 1px solid var(--axis); }
+
+.table--sortable th { cursor: pointer; user-select: none; }
+.table--sortable th[aria-sort]::after { content: " ↕"; opacity: .35; }
+.table--sortable th[aria-sort="descending"]::after { content: " ↓"; opacity: 1; }
+.table--sortable th[aria-sort="ascending"]::after { content: " ↑"; opacity: 1; }
+
+.cell-player { display: inline-flex; align-items: center; gap: 8px; }
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  background: var(--swatch, var(--text-muted));
+  flex: none;
+}
+.swatch[data-style="dashed"] {
+  background: repeating-linear-gradient(90deg, var(--swatch) 0 3px, transparent 3px 5px);
+}
+.swatch[data-style="dotted"] {
+  background: repeating-linear-gradient(90deg, var(--swatch) 0 2px, transparent 2px 4px);
+}
+
+.num-pos { color: var(--good); }
+.num-neg { color: var(--neg); }
+.num-muted { color: var(--text-muted); }
+
+.table-view { margin-top: 16px; }
+.table-view summary {
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding: 6px 0;
+}
+.table-view summary:hover { color: var(--text-primary); }
+
+/* ── profil hráče ─────────────────────────────────────────────────────── */
+
+.profile { display: flex; flex-direction: column; gap: 20px; }
+.profile__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+.profile__block { }
+.profile__block-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.h2h { display: flex; flex-direction: column; gap: 16px; }
+.h2h__bars { display: flex; flex-direction: column; gap: 10px; }
+.h2h__row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; }
+.h2h__meter {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  overflow: hidden;
+  display: flex;
+}
+.h2h__meter-fill { height: 100%; }
+.h2h__meter--left { justify-content: flex-end; }
+.h2h__label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-align: center;
+  min-width: 130px;
+}
+
+.empty {
+  color: var(--text-secondary);
+  font-size: 14px;
+  padding: 8px 0;
+}
+
+/* ── footer / chyby ───────────────────────────────────────────────────── */
+
+.footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 12.5px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.footer__sep { opacity: .5; }
+
+.boot-error {
+  margin: 40px auto;
+  max-width: 560px;
+  padding: 20px;
+  border: 1px solid var(--neg);
+  border-radius: var(--radius);
+  background: var(--surface-1);
+  color: var(--text-primary);
+  font-size: 14px;
+}
+.boot-error h2 { margin: 0 0 8px; font-size: 16px; }
+.boot-error pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  background: var(--surface-2);
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  margin: 10px 0 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

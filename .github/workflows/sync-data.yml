@@ -1,0 +1,88 @@
+name: Sync dat z Google Sheets
+
+on:
+  schedule:
+    # každý den v 04:15 UTC (06:15 SELČ / 05:15 SEČ)
+    - cron: '15 4 * * *'
+  workflow_dispatch:
+    inputs:
+      include_legacy:
+        description: 'Zpracovat i list "staré" (historie před 2021)'
+        type: boolean
+        default: false
+  # po změně parseru se data přegenerují sama
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/sync-sheets.mjs'
+      - '.github/workflows/sync-data.yml'
+
+# ať se dva běhy nepřetlačují nad stejnou branch
+concurrency:
+  group: sync-data
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # parser má testy – ať se nesypou data do repa, když se rozbije logika
+      - name: Testy parseru
+        run: node --test tests/
+
+      - name: Stáhnout data ze Sheets a vygenerovat JSON
+        env:
+          GOOGLE_SERVICE_ACCOUNT_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}
+          POKER_SHEET_ID: ${{ secrets.POKER_SHEET_ID }}
+          KREDIT_SHEET_ID: ${{ secrets.KREDIT_SHEET_ID }}
+          INCLUDE_LEGACY: ${{ inputs.include_legacy }}
+          OUT_DIR: data
+        run: node scripts/sync-sheets.mjs
+
+      - name: Commit a push změn v data/
+        run: |
+          set -euo pipefail
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "Žádná změna v datech – nic k commitování."
+            exit 0
+          fi
+          git commit -m "chore(data): sync z Google Sheets [skip ci]"
+          # mezi checkoutem a pushem mohl někdo commitnout – rebase a zkusit znovu
+          for attempt in 1 2 3; do
+            if git push; then
+              echo "Push OK (pokus $attempt)."
+              exit 0
+            fi
+            echo "Push selhal, rebasuji a zkouším znovu…"
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}"
+          done
+          echo "Push se nepovedl ani po 3 pokusech." >&2
+          exit 1
+
+      - name: Souhrn běhu
+        if: always()
+        run: |
+          {
+            echo "### Sync dat"
+            if [ -f data/index.json ]; then
+              echo '```json'
+              cat data/index.json
+              echo '```'
+            else
+              echo "Soubor \`data/index.json\` nebyl vygenerován – viz log kroku výše."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

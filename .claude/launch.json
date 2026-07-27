@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "poker-tracker",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "scripts/serve.py",
+        "4173"
+      ],
+      "port": 4173
+    }
+  ]
+}

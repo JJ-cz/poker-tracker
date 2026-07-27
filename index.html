@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="cs" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <title>Poker Tracker</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>♠</text></svg>">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="vendor/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ── Zámek ─────────────────────────────────────────────────────────── -->
+<div id="gate" class="gate" hidden>
+  <form class="gate__card" id="gate-form" autocomplete="off">
+    <div class="gate__suit">♠</div>
+    <h1 class="gate__title">Poker Tracker</h1>
+    <p class="gate__hint">Zadej heslo pro zobrazení výsledků.</p>
+    <div id="gate-controls">
+      <label class="gate__field">
+        <span class="sr-only">Heslo</span>
+        <input type="password" id="gate-input" name="password" placeholder="Heslo"
+               autocomplete="current-password" required>
+      </label>
+      <button type="submit" class="btn btn--primary btn--block">Vstoupit</button>
+    </div>
+    <p class="gate__error" id="gate-error" role="alert" hidden></p>
+  </form>
+</div>
+
+<!-- ── Aplikace ──────────────────────────────────────────────────────── -->
+<div id="app" class="app" hidden>
+
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span class="topbar__suit">♠</span>
+      <span>Poker&nbsp;Tracker</span>
+    </div>
+    <nav class="tabs" id="section-tabs" aria-label="Sekce">
+      <button class="tab is-active" data-section="leaderboard" type="button">Žebříček</button>
+      <button class="tab" data-section="trend" type="button">Vývoj v čase</button>
+      <button class="tab" data-section="finishes" type="button">Umístění</button>
+      <button class="tab" data-section="players" type="button">Hráči</button>
+      <button class="tab" data-section="kredit" type="button">Kredit</button>
+    </nav>
+    <div class="topbar__tools">
+      <button class="btn btn--ghost btn--icon" id="theme-toggle" type="button"
+              title="Přepnout světlý/tmavý režim" aria-label="Přepnout světlý/tmavý režim">◐</button>
+      <button class="btn btn--ghost" id="logout" type="button">Odhlásit</button>
+    </div>
+  </header>
+
+  <!-- jeden filtr pro všechny grafy a tabulky sekcí Žebříček / Vývoj / Umístění / Hráči -->
+  <div class="filters" id="filters">
+    <div class="filters__row">
+      <div class="field">
+        <label class="field__label" for="season-select">Sezóna</label>
+        <select id="season-select" class="select"></select>
+      </div>
+      <div class="field field--grow">
+        <div class="field__label">
+          Hráči
+          <span class="field__note" id="player-count-note"></span>
+        </div>
+        <div class="chips" id="player-chips" role="group" aria-label="Filtr hráčů"></div>
+      </div>
+      <div class="field">
+        <div class="field__label">&nbsp;</div>
+        <div class="btn-row">
+          <button class="btn btn--ghost btn--sm" id="players-all" type="button">Všichni</button>
+          <button class="btn btn--ghost btn--sm" id="players-top" type="button">Top 8</button>
+          <button class="btn btn--ghost btn--sm" id="players-none" type="button">Nikdo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="main" id="main">
+
+    <!-- Žebříček -->
+    <section class="section is-active" data-section="leaderboard">
+      <div class="tiles" id="season-tiles"></div>
+
+      <div class="card">
+        <div class="card__head">
+          <h2 class="card__title">Sezónní žebříček</h2>
+          <p class="card__sub">
+            Body = (počet hráčů ten večer) − (pořadí hráče). TOP efektivita = body / účasti × 100 %.
+            Profit se dopočítává jako prize − buy-in − rebuys − add-ons.
+          </p>
+        </div>
+        <div class="table-wrap">
+          <table class="table table--sortable" id="leaderboard-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vývoj v čase -->
+    <section class="section" data-section="trend">
+      <div class="card">
+        <div class="card__head">
+          <div class="card__head-row">
+            <div>
+              <h2 class="card__title">Kumulativní vývoj po večerech</h2>
+              <p class="card__sub" id="trend-sub"></p>
+            </div>
+            <div class="seg" id="trend-metric" role="group" aria-label="Metrika">
+              <button class="seg__btn is-active" data-metric="profit" type="button">Profit</button>
+              <button class="seg__btn" data-metric="points" type="button">Body</button>
+            </div>
+          </div>
+        </div>
+        <div class="chart-box chart-box--tall">
+          <canvas id="trend-chart"></canvas>
+        </div>
+        <details class="table-view">
+          <summary>Zobrazit jako tabulku</summary>
+          <div class="table-wrap table-wrap--scroll">
+            <table class="table" id="trend-table">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Umístění -->
+    <section class="section" data-section="finishes">
+      <div class="card">
+        <div class="card__head">
+          <div class="card__head-row">
+            <div>
+              <h2 class="card__title">Distribuce umístění</h2>
+              <p class="card__sub" id="finishes-sub"></p>
+            </div>
+            <div class="seg" id="finishes-mode" role="group" aria-label="Režim zobrazení">
+              <button class="seg__btn is-active" data-mode="absolute" type="button">Počty</button>
+              <button class="seg__btn" data-mode="relative" type="button">% z odehraných</button>
+            </div>
+          </div>
+        </div>
+        <div class="chart-box chart-box--tall">
+          <canvas id="finishes-chart"></canvas>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="finishes-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hráči -->
+    <section class="section" data-section="players">
+      <div class="card">
+        <div class="card__head">
+          <div class="card__head-row">
+            <h2 class="card__title">Profil hráče</h2>
+            <div class="field field--inline">
+              <label class="field__label" for="profile-select">Hráč</label>
+              <select id="profile-select" class="select"></select>
+            </div>
+          </div>
+        </div>
+        <div id="profile-body" class="profile"></div>
+      </div>
+
+      <div class="card">
+        <div class="card__head">
+          <div class="card__head-row">
+            <h2 class="card__title">Head-to-head</h2>
+            <div class="btn-row">
+              <div class="field field--inline">
+                <label class="field__label" for="h2h-a">Hráč A</label>
+                <select id="h2h-a" class="select"></select>
+              </div>
+              <div class="field field--inline">
+                <label class="field__label" for="h2h-b">Hráč B</label>
+                <select id="h2h-b" class="select"></select>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="h2h-body" class="h2h"></div>
+      </div>
+    </section>
+
+    <!-- Kredit -->
+    <section class="section" data-section="kredit">
+      <div class="card">
+        <div class="card__head">
+          <h2 class="card__title">Aktuální zůstatky kreditu</h2>
+          <p class="card__sub" id="kredit-sub">
+            Dopočítáno jako kumulativní součet celé historie transakcí (večery i manuální dobití).
+            Nezávisí na výběru sezóny ani na filtru hráčů. CUT (společné náklady) se do zůstatků nepočítá.
+          </p>
+        </div>
+        <div class="chart-box">
+          <canvas id="kredit-chart"></canvas>
+        </div>
+        <div class="table-wrap">
+          <table class="table" id="kredit-table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <span id="data-stamp">—</span>
+    <span class="footer__sep">·</span>
+    <span>Data se generují z Google Sheets přes GitHub Actions do <code>data/*.json</code>.</span>
+  </footer>
+</div>
+
+<div id="boot-error" class="boot-error" hidden></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

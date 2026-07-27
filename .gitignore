@@ -1,0 +1,19 @@
+# Nikdy nekomitovat klíč service accountu (patří jen do GitHub Secrets)
+*service-account*.json
+*credentials*.json
+*.pem
+*.key
+
+# macOS
+.DS_Store
+
+# editory
+.vscode/
+.idea/
+
+# lokální nastavení Claude Code (jen pro tento stroj)
+.claude/settings.local.json
+
+# node (projekt nemá build ani závislosti, jen pro případ)
+node_modules/
+npm-debug.log*
