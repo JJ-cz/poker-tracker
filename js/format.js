@@ -47,6 +47,26 @@ export function dateTime(isoString) {
   return Number.isNaN(d.getTime()) ? isoString : dtf.format(d);
 }
 
+/**
+ * Turnaj: datum a číslo turnaje v rámci dne (za noc se jich hraje víc).
+ * `short` je pro osu grafu, dlouhá varianta pro tooltip a tabulky.
+ */
+export function tournament(label, { short = false, withSeq = true } = {}) {
+  if (!label) return '—';
+  const iso = typeof label === 'string' ? label : label.date;
+  const seq = typeof label === 'string' ? null : label.seq;
+  const day = short ? dateShort(iso) : date(iso);
+  return withSeq && seq && seq > 1 ? `${day} · ${seq}.` : day;
+}
+
+/** Popis turnaje do tabulky: „14. 5. 2021 · 2. turnaj“. */
+export function tournamentLong(label) {
+  if (!label) return '—';
+  const iso = typeof label === 'string' ? label : label.date;
+  const seq = typeof label === 'string' ? null : label.seq;
+  return seq && seq > 1 ? `${date(iso)} · ${seq}. turnaj` : date(iso);
+}
+
 /** Třída pro obarvení čísla podle znaménka. */
 export function signClass(value) {
   if (!value) return 'num-muted';

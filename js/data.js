@@ -14,10 +14,15 @@ async function fetchJson(url) {
   return res.json();
 }
 
-/** Dopočte metadata večera a body hráčů podle nového jednotného systému. */
+/**
+ * Dopočte metadata turnaje a body hráčů podle nového jednotného systému.
+ *
+ * Jeden záznam = jeden turnaj (za jednu noc se jich hraje víc, `seq` je číslo
+ * turnaje v rámci dne).
+ */
 function decorateSessions(sessions) {
   return (sessions ?? [])
-    .map((session) => {
+    .map((session, index) => {
       const players = (session.players ?? []).map((p) => ({
         name: p.name,
         finish: typeof p.finish === 'number' ? p.finish : null,
@@ -27,14 +32,26 @@ function decorateSessions(sessions) {
         addons: Number(p.addons) || 0,
         profit: Number(p.profit) || 0,
       }));
-      const playerCount = players.length;
+
+      // Kolik hráčů u stolu skutečně bylo. Když v sešitu chybí řádek, je
+      // nejvyšší pořadí věrnější než počet řádků – jinak by body vyšly nízko.
+      const finishes = players.map((p) => p.finish).filter((f) => f !== null);
+      const playerCount = Math.max(players.length, finishes.length ? Math.max(...finishes) : 0);
+
       players.forEach((p) => {
-        // body_za_vecer = (počet hráčů ten večer) − (finish pořadí hráče)
+        // body_za_turnaj = (počet hráčů u stolu) − (finish pořadí hráče)
         p.points = p.finish === null ? 0 : Math.max(0, playerCount - p.finish);
       });
-      return { date: session.date, playerCount, players };
+
+      return {
+        id: `${session.date}#${session.seq ?? index + 1}`,
+        date: session.date,
+        seq: session.seq ?? index + 1,
+        playerCount,
+        players,
+      };
     })
-    .sort((a, b) => String(a.date).localeCompare(String(b.date)));
+    .sort((a, b) => String(a.date).localeCompare(String(b.date)) || a.seq - b.seq);
 }
 
 /**
@@ -77,7 +94,10 @@ export async function loadAll() {
   }
 
   // souhrnná „sezóna“ přes všechny roky
-  const allSessions = loaded.flatMap((s) => s.sessions).slice().sort((a, b) => a.date.localeCompare(b.date));
+  const allSessions = loaded
+    .flatMap((s) => s.sessions)
+    .slice()
+    .sort((a, b) => a.date.localeCompare(b.date) || a.seq - b.seq);
 
   const roster = [...new Set(allSessions.flatMap((s) => s.players.map((p) => p.name)))].sort((a, b) =>
     a.localeCompare(b, 'cs')

@@ -141,12 +141,18 @@ export function mapResultHeaders(headerRow = []) {
 }
 
 /**
- * Rozparsuje list výsledků na večery.
+ * Rozparsuje list výsledků na jednotlivé TURNAJE.
  *
- * Prázdné řádky v tabulce oddělují večery, ale seskupujeme primárně podle data
- * (robustnější – stray prázdný řádek uprostřed večera by jinak rozsekl počet
- * hráčů a tím i body). Prázdný řádek zároveň resetuje "fill-down" data, aby se
- * chybějící datum nedědilo přes hranici večera.
+ * Jeden blok řádků mezi prázdnými řádky = jeden turnaj (dle SPECu). Během noci
+ * se hraje víc turnajů, takže na jedno datum jich připadá běžně 2–5 – seskupovat
+ * podle data nelze, rozbilo by to počet hráčů u stolu a tím i body.
+ *
+ * Datum se dědí i přes prázdné řádky: v sešitu bývá vyplněné jen u prvního
+ * turnaje daného dne.
+ *
+ * Každý turnaj se navíc kontroluje – pořadí má být 1..n bez duplicit a bez
+ * opakovaného jména. Co neprojde, jde do `issues` (ne do koše), aby se vědělo,
+ * kde v sešitu něco chybí.
  */
 export function parseResultsSheet(sheetTitle, rows) {
   const header = findHeaderRow(rows);
@@ -163,15 +169,20 @@ export function parseResultsSheet(sheetTitle, rows) {
     warn(`list "${sheetTitle}": chybí sloupce ${missing.join(', ')}`);
   }
 
-  const byDate = new Map();
+  const tournaments = [];
+  let current = null;
   let carriedDate = null;
   let skipped = 0;
 
+  const closeBlock = () => {
+    if (current && current.players.length) tournaments.push(current);
+    current = null;
+  };
+
   for (let r = headerIndex + 1; r < rows.length; r += 1) {
     const row = rows[r] ?? [];
-    const rowIsEmpty = row.every(isBlank);
-    if (rowIsEmpty) {
-      carriedDate = null; // hranice večera
+    if (row.every(isBlank)) {
+      closeBlock(); // prázdný řádek = konec turnaje
       continue;
     }
 
@@ -203,8 +214,10 @@ export function parseResultsSheet(sheetTitle, rows) {
     const finishRaw = map.finish !== undefined ? row[map.finish] : null;
     const finish = isBlank(finishRaw) ? null : Math.round(toNumber(finishRaw));
 
-    if (!byDate.has(isoDate)) byDate.set(isoDate, []);
-    byDate.get(isoDate).push({
+    if (!current) current = { date: isoDate, players: [] };
+    // datum turnaje bere první řádek bloku, ve kterém je vyplněné
+    if (!current.date) current.date = isoDate;
+    current.players.push({
       name,
       finish,
       prize,
@@ -218,27 +231,79 @@ export function parseResultsSheet(sheetTitle, rows) {
     });
   }
 
+  closeBlock();
+
   if (skipped) log(`list "${sheetTitle}": přeskočeno ${skipped} řádků bez jména/data.`);
 
-  const mismatches = [];
-  const sessions = [...byDate.entries()]
-    .map(([date, players]) => {
-      players.forEach((p) => {
-        if (p.profitMismatch) {
-          mismatches.push(`${date} / ${p.name}: tabulka ${p.sheetProfit}, dopočet ${p.profit}`);
-        }
-      });
-      return { date, players };
+  // číslo turnaje v rámci dne (v pořadí, v jakém jsou v sešitu)
+  const seqByDate = new Map();
+  const sessions = tournaments
+    .filter((t) => t.date)
+    .map((t) => {
+      const seq = (seqByDate.get(t.date) ?? 0) + 1;
+      seqByDate.set(t.date, seq);
+      return { date: t.date, seq, players: t.players };
     })
-    .sort((a, b) => a.date.localeCompare(b.date));
+    .sort((a, b) => a.date.localeCompare(b.date) || a.seq - b.seq);
 
-  if (mismatches.length) {
-    warn(
-      `list "${sheetTitle}": ${mismatches.length}× se profit z tabulky liší od dopočtu ` +
-        `(prize - buyin - rebuys - addons). Ukázka: ${mismatches.slice(0, 5).join(' | ')}`
-    );
-    issues.push(`${sheetTitle}: ${mismatches.length} rozdílů v profitu (viz log)`);
+  const droppedNoDate = tournaments.length - sessions.length;
+  if (droppedNoDate > 0) {
+    issues.push(`${sheetTitle}: ${droppedNoDate} bloků bez data – vynechány`);
+    warn(`list "${sheetTitle}": ${droppedNoDate} bloků nemá datum, vynechávám je.`);
   }
+
+  // --- kontrola kvality dat ---------------------------------------------
+  const mismatches = [];
+  const oddFinishes = [];
+  const duplicateNames = [];
+
+  for (const t of sessions) {
+    const label = `${t.date}${t.seq > 1 ? ` (${t.seq}. turnaj)` : ''}`;
+    for (const p of t.players) {
+      if (p.profitMismatch) {
+        mismatches.push(`${label} / ${p.name}: tabulka ${p.sheetProfit}, dopočet ${p.profit}`);
+      }
+    }
+    const finishes = t.players.map((p) => p.finish).filter((f) => f !== null);
+    const expected = t.players.length;
+    const isClean =
+      finishes.length === expected &&
+      new Set(finishes).size === expected &&
+      Math.min(...finishes) === 1 &&
+      Math.max(...finishes) === expected;
+    if (finishes.length && !isClean) {
+      oddFinishes.push(`${label}: ${expected} hráčů, pořadí ${finishes.join(',')}`);
+    }
+    const names = t.players.map((p) => p.name);
+    if (new Set(names).size !== names.length) {
+      duplicateNames.push(`${label}: ${names.join(',')}`);
+    }
+  }
+
+  const report = (list, summary, detail) => {
+    if (!list.length) return;
+    warn(`list "${sheetTitle}": ${detail} Ukázka: ${list.slice(0, 5).join(' | ')}`);
+    issues.push(`${sheetTitle}: ${list.length} ${summary}`);
+  };
+
+  report(
+    mismatches,
+    'rozdílů v profitu (viz log)',
+    `${mismatches.length}× se profit z tabulky liší od dopočtu (prize - buyin - rebuys - addons).`
+  );
+  report(
+    oddFinishes,
+    'turnajů s nesouvislým pořadím (viz log)',
+    `${oddFinishes.length} turnajů nemá pořadí 1..n – buď v sešitu chybí řádek, ` +
+      'nebo prázdný řádek rozsekl turnaj na dva.'
+  );
+  report(
+    duplicateNames,
+    'turnajů s opakovaným jménem (viz log)',
+    `${duplicateNames.length} turnajů má stejného hráče dvakrát – nejspíš chybí oddělující prázdný řádek.`
+  );
+
+  log(`list "${sheetTitle}": ${sessions.length} turnajů v ${seqByDate.size} hracích dnech`);
 
   return { sessions, issues };
 }
@@ -278,6 +343,7 @@ export function parseKreditSheet(sheetTitle, rows) {
 
   const headerRow = rows[headerIndex] ?? [];
   const playerColumns = [];
+  const ignoredColumns = [];
   let cutColumn = null;
   let sumColumn = null;
 
@@ -287,6 +353,11 @@ export function parseKreditSheet(sheetTitle, rows) {
     if (key === 'cut') { cutColumn = colIndex; return; }
     if (key === 'sum' || key === 'suma') { sumColumn = colIndex; return; }
     if (KREDIT_NON_PLAYER.includes(key)) return;
+    // Přezdívka hráče není nikdy jen číslo – takové sloupce jsou pomocné.
+    if (/^\d+([.,]\d+)?$/.test(key)) {
+      ignoredColumns.push(normalizePlayerName(raw));
+      return;
+    }
     playerColumns.push({ name: normalizePlayerName(raw), col: colIndex });
   });
 
@@ -342,9 +413,13 @@ export function parseKreditSheet(sheetTitle, rows) {
       transactions: txCounts.get(name),
       reportedBalance: reported.has(name) ? round2(reported.get(name)) : null,
     }))
-    // Sloupce hráčů, kteří nikdy nic neměli, do dashboardu nepatří.
-    .filter((p) => p.transactions > 0 || p.balance !== 0 || p.reportedBalance !== null)
+    // Hráči bez jediné transakce a s nulou do dashboardu nepatří – nemají historii.
+    .filter((p) => p.transactions > 0 || p.balance !== 0)
     .sort((a, b) => b.balance - a.balance);
+
+  if (ignoredColumns.length) {
+    log(`kredit: vynechány číselné (nehráčské) sloupce: ${ignoredColumns.join(', ')}`);
+  }
 
   const mismatches = players
     .filter((p) => p.reportedBalance !== null && Math.abs(p.reportedBalance - p.balance) > 0.01)
@@ -365,6 +440,7 @@ export function parseKreditSheet(sheetTitle, rows) {
     total: round2(players.reduce((sum, p) => sum + p.balance, 0)),
     rowsCounted,
     hasSumColumn: sumColumn !== null,
+    ignoredColumns,
     mismatches,
   };
 }

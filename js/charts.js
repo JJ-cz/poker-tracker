@@ -10,7 +10,7 @@
  */
 
 import { DASH_PATTERNS, ordinalSteps, playerColor, playerLineStyle } from './palette.js';
-import { num, signed, dateShort, date as fmtDate, percent } from './format.js';
+import { num, signed, percent, tournament, tournamentLong } from './format.js';
 
 const { Chart } = window;
 
@@ -57,7 +57,8 @@ function baseOptions(palette) {
   return {
     responsive: true,
     maintainAspectRatio: false,
-    animation: { duration: 200 },
+    // bez animace: u stovek bodů nic nepřináší a graf je hned čitelný
+    animation: false,
     font: { family: 'system-ui, -apple-system, "Segoe UI", sans-serif' },
     plugins: {
       legend: {
@@ -112,7 +113,9 @@ export function trendChart(canvas, { labels, series, metric, styles, palette }) 
   return new Chart(canvas, {
     type: 'line',
     data: {
-      labels: labels.map(dateShort),
+      // na osu jen datum – číslo turnaje v rámci dne by tu při stovkách bodů
+      // jen šumělo, v tooltipu je k dispozici celé
+      labels: labels.map((label) => tournament(label, { short: true, withSeq: false })),
       datasets: series.map((s) => {
         const color = playerColor(styles, s.name, palette);
         return {
@@ -186,7 +189,7 @@ export function trendChart(canvas, { labels, series, metric, styles, palette }) 
           ...options.plugins.tooltip,
           itemSort: (a, b) => (b.raw ?? -Infinity) - (a.raw ?? -Infinity),
           callbacks: {
-            title: (items) => fmtDate(labels[items[0].dataIndex]),
+            title: (items) => tournamentLong(labels[items[0].dataIndex]),
             label: (item) =>
               `${item.dataset.label}: ${isProfit ? signed(item.raw) : num(item.raw)}`,
           },
@@ -260,7 +263,7 @@ export function finishChart(canvas, { rows, maxFinish, mode, palette }) {
           max: relative ? 100 : undefined,
           title: {
             display: true,
-            text: relative ? '% z odehraných večerů hráče' : 'počet večerů',
+            text: relative ? '% z odehraných turnajů hráče' : 'počet turnajů',
             color: palette.textMuted,
             font: { size: 11 },
           },
@@ -279,7 +282,7 @@ export function finishChart(canvas, { rows, maxFinish, mode, palette }) {
         tooltip: {
           ...options.plugins.tooltip,
           callbacks: {
-            title: (items) => `${items[0].label} · ${rows[items[0].dataIndex].games} večerů`,
+            title: (items) => `${items[0].label} · ${rows[items[0].dataIndex].games} turnajů`,
             label: (item) => {
               const count = item.dataset.rawCounts[item.dataIndex];
               const games = rows[item.dataIndex].games;

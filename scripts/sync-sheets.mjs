@@ -279,6 +279,12 @@ async function main() {
     `kredit.json: ${kredit.players.length} hráčů, ${kredit.rowsCounted} transakčních řádků, ` +
       `celkem na účtu ${kredit.total}, CUT celkem ${kredit.cutTotal}`
   );
+  if (kredit.mismatches.length) {
+    allIssues.push(`kredit: ${kredit.mismatches.length} zůstatků nesouhlasí s řádkem „Kredit“`);
+  }
+  if (kredit.ignoredColumns?.length) {
+    allIssues.push(`kredit: vynechané nehráčské sloupce (${kredit.ignoredColumns.join(', ')})`);
+  }
 
   // --- index ------------------------------------------------------------
   await writeFile(

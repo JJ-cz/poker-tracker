@@ -90,18 +90,23 @@ upozornění – tam se pozná, jestli parser něco nepochopil.
 | sekce | co ukazuje |
 |---|---|
 | **Žebříček** | účasti, výhry, Ø umístění, prize, buy-in, rebuys, add-ons, body, profit, TOP efektivita; řaditelné kliknutím na hlavičku |
-| **Vývoj v čase** | kumulativní profit / body po večerech, přepínač metriky, tabulkový twin |
-| **Umístění** | distribuce umístění absolutně i v % z odehraných večerů hráče |
-| **Hráči** | profil hráče (série, nejlepší/nejhorší večer, historie) + head-to-head |
+| **Vývoj v čase** | kumulativní profit / body po turnajích, přepínač metriky, tabulkový twin |
+| **Umístění** | distribuce umístění absolutně i v % z odehraných turnajů hráče |
+| **Hráči** | profil hráče (série, nejlepší/nejhorší turnaj, historie) + head-to-head |
 | **Kredit** | aktuální zůstatky dopočítané z celé historie transakcí |
 
 Sezóna se přepíná v horní liště, `Vše` je souhrn přes všechny roky. Filtr hráčů
 platí pro všechny sekce naráz (kredit je na sezóně nezávislý).
 
+**Jednotka = jeden turnaj, ne celý večer.** Za jednu noc se hraje víc turnajů
+(běžně 2–5) a v sešitu je každý svým blokem řádků mezi prázdnými řádky. Sync je
+drží oddělené – sloučit je podle data by nafouklo počet hráčů u stolu a rozbilo
+body. „Účasti“ v žebříčku = počet odehraných turnajů.
+
 **Bodovací systém** (jediný, staré sloupce `body`/`body 2`/`body 3` se ignorují):
 
 ```
-body_za_vecer = počet hráčů ten večer − pořadí hráče
+body_za_turnaj = počet hráčů u stolu − pořadí hráče
 ```
 
 **TOP efektivita** = `body / počet účastí × 100 %` (dle specifikace).
@@ -147,6 +152,22 @@ tests/                  testy parseru
 data/                   generovaná data (nepsat ručně)
 vendor/chart.umd.min.js Chart.js 4.4.7
 ```
+
+## Kontrola kvality dat
+
+Sync data nejen stahuje, ale i kontroluje. Co najde, vypíše do `data/index.json`
+(pole `issues`) a do Summary běhu workflow:
+
+- profit z tabulky ≠ dopočet `prize − buy-in − rebuys − add-ons`
+- turnaj, kde pořadí není souvislé 1..n (v sešitu chybí řádek, nebo prázdný řádek
+  rozsekl jeden turnaj na dva)
+- turnaj, kde je stejný hráč dvakrát (nejspíš chybí oddělující prázdný řádek)
+- zůstatek kreditu, který nesouhlasí s řádkem „Kredit“ v sešitu
+- nehráčské (čistě číselné) sloupce v kreditu, které se vynechaly
+
+Nic z toho sync nezastaví – data se vygenerují a upozornění jsou vodítko, kde
+v sešitu něco doladit. Profit appka vždy počítá sama, hodnota z tabulky slouží
+jen na tuhle kontrolu.
 
 ## Známé mezery
 

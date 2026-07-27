@@ -54,7 +54,7 @@ function currentSeason() {
   return state.data.seasons.find((s) => s.id === state.seasonId) ?? state.data.seasons[0];
 }
 
-/** Večery aktuální sezóny (plná data – filtr hráčů se do výpočtů nepromítá). */
+/** Turnaje aktuální sezóny (plná data – filtr hráčů se do výpočtů nepromítá). */
 function currentSessions() {
   return currentSeason().sessions;
 }
@@ -214,19 +214,28 @@ function renderTiles() {
   container.innerHTML = '';
 
   const tiles = [
-    { label: 'Večerů', value: F.num(sum.sessionCount), note: sum.firstDate ? `${F.date(sum.firstDate)} – ${F.date(sum.lastDate)}` : '' },
+    {
+      label: 'Turnajů',
+      value: F.num(sum.sessionCount),
+      note: [
+        sum.dayCount ? `${F.num(sum.dayCount)} hracích dnů` : '',
+        sum.firstDate ? `${F.date(sum.firstDate)} – ${F.date(sum.lastDate)}` : '',
+      ]
+        .filter(Boolean)
+        .join(' · '),
+    },
     { label: 'Hráčů', value: F.num(sum.playerCount), note: `Ø ${F.num1(sum.avgPlayers)} u stolu` },
     { label: 'Vedoucí žebříčku', value: sum.leader ? sum.leader.name : '—', note: sum.leader ? `${F.num(sum.leader.points)} bodů` : '' },
     {
-      label: 'Nejlepší večer',
+      label: 'Nejlepší turnaj',
       value: sum.biggestWin ? F.signed(sum.biggestWin.profit) : '—',
-      note: sum.biggestWin ? `${sum.biggestWin.name} · ${F.date(sum.biggestWin.date)}` : '',
+      note: sum.biggestWin ? `${sum.biggestWin.name} · ${F.tournamentLong(sum.biggestWin)}` : '',
       className: sum.biggestWin ? F.signClass(sum.biggestWin.profit) : '',
     },
     {
-      label: 'Nejhorší večer',
+      label: 'Nejhorší turnaj',
       value: sum.biggestLoss ? F.signed(sum.biggestLoss.profit) : '—',
-      note: sum.biggestLoss ? `${sum.biggestLoss.name} · ${F.date(sum.biggestLoss.date)}` : '',
+      note: sum.biggestLoss ? `${sum.biggestLoss.name} · ${F.tournamentLong(sum.biggestLoss)}` : '',
       className: sum.biggestLoss ? F.signClass(sum.biggestLoss.profit) : '',
     },
     { label: 'Vloženo do hry', value: F.num(sum.totalPot), note: 'buy-in + rebuys + add-ons' },
@@ -341,8 +350,8 @@ function renderTrend() {
 
   $('#trend-sub').textContent =
     metric === 'profit'
-      ? 'Kumulativní profit po jednotlivých večerech. Čára hráče začíná jeho prvním odehraným večerem.'
-      : 'Kumulativní body po jednotlivých večerech (body = počet hráčů večera − pořadí).';
+      ? 'Kumulativní profit po jednotlivých turnajích. Čára hráče začíná jeho prvním odehraným turnajem.'
+      : 'Kumulativní body po jednotlivých turnajích (body = počet hráčů u stolu − pořadí).';
 
   const table = $('#trend-table');
 
@@ -356,9 +365,9 @@ function renderTrend() {
 
   fillTable(
     table,
-    ['Datum', ...names],
+    ['Turnaj', ...names],
     labels.map((label, index) => [
-      F.date(label),
+      F.tournamentLong(label),
       ...series.map((s) => {
         const value = s.data[index];
         if (value === null) return { text: '—', className: 'num-muted' };
@@ -386,7 +395,7 @@ function renderFinishes() {
   const table = $('#finishes-table');
 
   $('#finishes-sub').textContent = relative
-    ? 'Podíl umístění na odehraných večerech daného hráče – fér srovnání hráčů s různým počtem účastí.'
+    ? 'Podíl umístění na odehraných turnajích daného hráče – fér srovnání hráčů s různým počtem účastí.'
     : 'Kolikrát který hráč skončil na 1., 2., 3. … místě (absolutní počty).';
 
   if (!rows.length || !maxFinish) {
@@ -493,7 +502,7 @@ function renderProfile() {
   );
 
   const highlights = el('div', 'profile__block');
-  highlights.append(el('h3', 'profile__block-title', 'Nejlepší a nejhorší večer'));
+  highlights.append(el('h3', 'profile__block-title', 'Nejlepší a nejhorší turnaj'));
   const hlTable = el('table', 'table');
   hlTable.append(el('thead'), el('tbody'));
   highlights.append((() => {
@@ -505,19 +514,19 @@ function renderProfile() {
 
   fillTable(
     hlTable,
-    ['', 'Datum', 'Hráčů', 'Umístění', 'Body', 'Profit'],
+    ['', 'Turnaj', 'Hráčů', 'Umístění', 'Body', 'Profit'],
     [
-      ['Nejlepší', F.date(profile.bestEvening.date), F.num(profile.bestEvening.playerCount),
+      ['Nejlepší', F.tournamentLong(profile.bestEvening), F.num(profile.bestEvening.playerCount),
         profile.bestEvening.finish ?? '—', F.num(profile.bestEvening.points),
         { text: F.signed(profile.bestEvening.profit), className: F.signClass(profile.bestEvening.profit) }],
-      ['Nejhorší', F.date(profile.worstEvening.date), F.num(profile.worstEvening.playerCount),
+      ['Nejhorší', F.tournamentLong(profile.worstEvening), F.num(profile.worstEvening.playerCount),
         profile.worstEvening.finish ?? '—', F.num(profile.worstEvening.points),
         { text: F.signed(profile.worstEvening.profit), className: F.signClass(profile.worstEvening.profit) }],
     ]
   );
 
   const history = el('div', 'profile__block');
-  history.append(el('h3', 'profile__block-title', `Historie večerů (${profile.games})`));
+  history.append(el('h3', 'profile__block-title', `Historie turnajů (${profile.games})`));
   const histTable = el('table', 'table');
   histTable.append(el('thead'), el('tbody'));
   const wrap = el('div', 'table-wrap table-wrap--scroll');
@@ -527,9 +536,9 @@ function renderProfile() {
 
   fillTable(
     histTable,
-    ['Datum', 'Hráčů', 'Umístění', 'Body', 'Prize', 'Buy-in', 'Rebuys', 'Add-ons', 'Profit', 'Profit kumul.'],
+    ['Turnaj', 'Hráčů', 'Umístění', 'Body', 'Prize', 'Buy-in', 'Rebuys', 'Add-ons', 'Profit', 'Profit kumul.'],
     [...profile.evenings].reverse().map((e) => [
-      F.date(e.date),
+      F.tournamentLong(e),
       F.num(e.playerCount),
       e.finish ?? '—',
       F.num(e.points),
@@ -583,11 +592,11 @@ function renderH2H() {
     return;
   }
   if (!result.shared) {
-    body.append(el('p', 'empty', `${result.nameA} a ${result.nameB} nehráli v této sezóně žádný večer společně.`));
+    body.append(el('p', 'empty', `${result.nameA} a ${result.nameB} nehráli v této sezóně žádný turnaj společně.`));
     return;
   }
 
-  const head = el('p', 'card__sub', `Společných večerů: ${F.num(result.shared)} · remízy/bez pořadí: ${F.num(result.ties)}`);
+  const head = el('p', 'card__sub', `Společných turnajů: ${F.num(result.shared)} · remízy/bez pořadí: ${F.num(result.ties)}`);
   body.append(head);
 
   const names = [result.nameA, result.nameB];
@@ -672,7 +681,7 @@ function renderKredit() {
   );
 
   $('#kredit-sub').textContent =
-    'Dopočítáno jako kumulativní součet celé historie transakcí (večery i manuální dobití). ' +
+    'Dopočítáno jako kumulativní součet celé historie transakcí (hrací dny i manuální dobití). ' +
     'Nezávisí na výběru sezóny ani na filtru hráčů. ' +
     `CUT (společné náklady) se do zůstatků nepočítá – celkem ${F.num(kredit.cutTotal ?? 0)}.`;
 

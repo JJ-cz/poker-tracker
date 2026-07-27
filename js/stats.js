@@ -81,13 +81,18 @@ export function summary(sessions) {
   let biggestLoss = null;
   for (const session of sessions) {
     for (const p of session.players) {
-      if (!biggestWin || p.profit > biggestWin.profit) biggestWin = { ...p, date: session.date };
-      if (!biggestLoss || p.profit < biggestLoss.profit) biggestLoss = { ...p, date: session.date };
+      if (!biggestWin || p.profit > biggestWin.profit) {
+        biggestWin = { ...p, date: session.date, seq: session.seq };
+      }
+      if (!biggestLoss || p.profit < biggestLoss.profit) {
+        biggestLoss = { ...p, date: session.date, seq: session.seq };
+      }
     }
   }
 
   return {
     sessionCount: sessions.length,
+    dayCount: new Set(dates).size,
     playerCount: board.length,
     seats,
     avgPlayers: sessions.length ? round2(seats / sessions.length) : 0,
@@ -104,12 +109,12 @@ export function summary(sessions) {
 }
 
 /**
- * Kumulativní řady po večerech.
- * Před prvním večerem hráče je hodnota null (čára začne až tam, kde hráč
+ * Kumulativní řady po turnajích.
+ * Před prvním turnajem hráče je hodnota null (čára začne až tam, kde hráč
  * poprvé hrál), po posledním se drží poslední hodnota.
  */
 export function cumulativeSeries(sessions, metric, names) {
-  const labels = sessions.map((s) => s.date);
+  const labels = sessions.map((s) => ({ date: s.date, seq: s.seq }));
   const series = names.map((name) => {
     let running = 0;
     let started = false;
@@ -168,6 +173,7 @@ export function playerProfile(sessions, name) {
     points += entry.points;
     evenings.push({
       date: session.date,
+      seq: session.seq,
       playerCount: session.playerCount,
       finish: entry.finish,
       points: entry.points,

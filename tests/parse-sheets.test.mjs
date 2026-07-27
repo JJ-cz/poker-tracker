@@ -75,6 +75,69 @@ test('list Výsledky: večery, dědění data v bloku, dopočet profitu', () => 
   assert.deepEqual(issues, []);
 });
 
+test('víc turnajů v jednu noc zůstane oddělených (jinak se rozbijí body)', () => {
+  const rows = [
+    ['datum', 'jméno', 'finish', 'prize', 'buy-in', 'rebuys', 'add-ons'],
+    // 1. turnaj
+    ['5.3.2022', 'JJ', 1, 600, 100, 0, 0],
+    ['5.3.2022', 'Luďa', 2, 0, 100, 0, 0],
+    ['5.3.2022', 'Pepa', 3, 0, 100, 0, 0],
+    ['', '', '', '', '', '', ''],
+    // 2. turnaj tentýž den – datum je v sešitu jen u prvního řádku bloku
+    ['5.3.2022', 'Luďa', 1, 400, 100, 0, 0],
+    ['', 'JJ', 2, 0, 100, 0, 0],
+    ['', '', '', '', '', '', ''],
+    // 3. turnaj tentýž den – datum už v sešitu vůbec není, dědí se
+    ['', 'Pepa', 1, 200, 100, 0, 0],
+    ['', 'JJ', 2, 0, 100, 0, 0],
+  ];
+
+  const { sessions, issues } = parseResultsSheet('Výsledky 2022', rows);
+
+  assert.equal(sessions.length, 3, 'tři samostatné turnaje, ne jeden slepenec');
+  assert.deepEqual(sessions.map((s) => s.seq), [1, 2, 3]);
+  assert.deepEqual(sessions.map((s) => s.date), ['2022-03-05', '2022-03-05', '2022-03-05']);
+  assert.deepEqual(sessions.map((s) => s.players.length), [3, 2, 2]);
+  assert.deepEqual(
+    sessions[1].players.map((p) => `${p.name}:${p.finish}`),
+    ['Luďa:1', 'JJ:2'],
+    'datum se dědí přes prázdný řádek, hráči zůstanou u svého turnaje'
+  );
+  assert.deepEqual(issues, [], 'čistá data → žádná upozornění');
+});
+
+test('podezřelý turnaj se nahlásí, ale data se nezahodí', () => {
+  const chybiVitez = parseResultsSheet('Výsledky 2024', [
+    ['datum', 'jméno', 'finish'],
+    ['19.1.2024', 'Anička', 2],
+    ['19.1.2024', 'Martin', 3],
+  ]);
+  assert.equal(chybiVitez.sessions.length, 1);
+  assert.equal(chybiVitez.sessions[0].players.length, 2);
+  assert.match(chybiVitez.issues.join(' '), /nesouvislým pořadím/);
+
+  const dvakratTyz = parseResultsSheet('Výsledky 2026', [
+    ['datum', 'jméno', 'finish'],
+    ['13.2.2026', 'Aťourek', 1],
+    ['13.2.2026', 'Pumča', 2],
+    ['13.2.2026', 'Aťourek', 3],
+  ]);
+  assert.equal(dvakratTyz.sessions.length, 1);
+  assert.match(dvakratTyz.issues.join(' '), /opakovaným jménem/);
+});
+
+test('řádky před prvním datem se ignorují, nespadne to', () => {
+  const { sessions } = parseResultsSheet('Výsledky 2023', [
+    ['datum', 'jméno', 'finish'],
+    ['', 'Kdosi', 1], // ještě není žádné datum, ze kterého by se dědilo
+    ['', '', ''],
+    ['4.4.2023', 'JJ', 1],
+  ]);
+  assert.equal(sessions.length, 1);
+  assert.equal(sessions[0].date, '2023-04-04');
+  assert.deepEqual(sessions[0].players.map((p) => p.name), ['JJ']);
+});
+
 test('list Výsledky: jiné pořadí sloupců a chybějící add-ons', () => {
   const rows = [
     ['jméno', 'pořadí', 'Datum', 'Prize', 'Buy-in', 'Rebuys'],
@@ -145,6 +208,24 @@ test('kredit: rozdíl proti tabulce se nahlásí, prázdný hráč se vynechá',
     ['1.1.2021', 500, '', 0, 500],
   ]);
   assert.deepEqual(prazdny.players.map((p) => p.name), ['JJ']);
+});
+
+test('kredit: čistě číselný sloupec není hráč', () => {
+  const kredit = parseKreditSheet('kredit', [
+    ['Datum', 'JJ', 1541, 'CUT', 'SUM'],
+    ['1.1.2021', 500, 8012, 0, 500],
+  ]);
+  assert.deepEqual(kredit.players.map((p) => p.name), ['JJ'], 'sloupec 1541 se do hráčů nepočítá');
+  assert.deepEqual(kredit.ignoredColumns, ['1541']);
+});
+
+test('kredit: hráč bez jediné transakce a s nulou se nezobrazuje', () => {
+  const kredit = parseKreditSheet('kredit', [
+    ['Datum', 'JJ', 'Lordik', 'CUT', 'SUM'],
+    ['Kredit', 500, 0, '', ''],
+    ['1.1.2021', 500, '', 0, 500],
+  ]);
+  assert.deepEqual(kredit.players.map((p) => p.name), ['JJ']);
 });
 
 test('kredit bez sloupce Datum je chyba, ne tichý průchod', () => {
