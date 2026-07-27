@@ -569,7 +569,6 @@ input:focus-visible, .select:focus-visible, button:focus-visible {
   gap: 8px;
   flex-wrap: wrap;
 }
-.footer__sep { opacity: .5; }
 
 .boot-error {
   margin: 40px auto;
