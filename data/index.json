@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-31T07:13:42.335Z",
+  "generatedAt": "2026-08-01T06:40:10.887Z",
   "seasons": [
     {
       "id": "2021",
@@ -46,7 +46,7 @@
       "label": "2026",
       "year": 2026,
       "file": "data/vysledky-2026.json",
-      "sessions": 172,
+      "sessions": 176,
       "players": 9
     }
   ],
