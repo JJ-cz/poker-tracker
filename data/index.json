@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-08T05:09:14.102Z",
+  "generatedAt": "2026-08-09T05:17:43.833Z",
   "seasons": [
     {
       "id": "2021",
@@ -46,7 +46,7 @@
       "label": "2026",
       "year": 2026,
       "file": "data/vysledky-2026.json",
-      "sessions": 176,
+      "sessions": 185,
       "players": 9
     }
   ],
@@ -66,6 +66,6 @@
     "Výsledky 2025: 1 turnajů s nesouvislým pořadím (viz log)",
     "Výsledky 2026: 14 rozdílů v profitu (viz log)",
     "Výsledky 2026: 1 turnajů s opakovaným jménem (viz log)",
-    "kredit: vynechané nehráčské sloupce (1573, 46870, 48800)"
+    "kredit: vynechané nehráčské sloupce (1639, 46804, 48800)"
   ]
 }
