@@ -1,36 +1,36 @@
 {
-  "generatedAt": "2026-08-15T04:46:05.767Z",
+  "generatedAt": "2026-08-16T04:49:30.351Z",
   "sheet": "Kredit",
   "players": [
     {
       "name": "Hensn",
-      "balance": 20623,
-      "transactions": 113,
-      "reportedBalance": 20623
+      "balance": 20389,
+      "transactions": 114,
+      "reportedBalance": 20389
     },
     {
       "name": "Jiří",
-      "balance": 15249,
-      "transactions": 88,
-      "reportedBalance": 15249
+      "balance": 15897,
+      "transactions": 89,
+      "reportedBalance": 15897
     },
     {
       "name": "Anička",
-      "balance": 4796,
-      "transactions": 110,
-      "reportedBalance": 4796
-    },
-    {
-      "name": "Aťourek",
-      "balance": 1888,
-      "transactions": 121,
-      "reportedBalance": 1888
+      "balance": 5312,
+      "transactions": 111,
+      "reportedBalance": 5312
     },
     {
       "name": "Ludovit",
       "balance": 1720,
       "transactions": 19,
       "reportedBalance": 1720
+    },
+    {
+      "name": "Aťourek",
+      "balance": 1134,
+      "transactions": 122,
+      "reportedBalance": 1134
     },
     {
       "name": "Hul mě hned",
@@ -58,9 +58,9 @@
     },
     {
       "name": "Pumča",
-      "balance": 125,
-      "transactions": 117,
-      "reportedBalance": 125
+      "balance": -69,
+      "transactions": 118,
+      "reportedBalance": -69
     },
     {
       "name": "Martin",
@@ -69,13 +69,13 @@
       "reportedBalance": -252
     }
   ],
-  "cutTotal": 1996,
-  "total": 46804,
-  "rowsCounted": 163,
+  "cutTotal": 2014,
+  "total": 46786,
+  "rowsCounted": 164,
   "hasSumColumn": true,
   "ignoredColumns": [
-    "1639",
-    "46804",
+    "1657",
+    "46786",
     "48800"
   ],
   "mismatches": []
