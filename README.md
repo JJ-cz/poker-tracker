@@ -155,8 +155,18 @@ vendor/chart.umd.min.js Chart.js 4.4.7
 
 ## Kontrola kvality dat
 
-Sync data nejen stahuje, ale i kontroluje. Co najde, vypíše do `data/index.json`
-(pole `issues`) a do Summary běhu workflow:
+Sync data nejen stahuje, ale i kontroluje. Nálezy jsou na dvou místech:
+
+- **Summary běhu workflow** – rovnou na stránce běhu
+  ([Actions → Sync dat z Google Sheets](https://github.com/JJ-cz/poker-tracker/actions/workflows/sync-data.yml)
+  → vyber běh), s rozbalovacím úplným seznamem. Logy Actions se po 90 dnech mažou.
+- **`data/index.json`, pole `issues`** – zůstává v repu natrvalo. Každý nález má
+  `sheet`, `kind`, `summary`, `count` a `details` s **úplným** výpisem.
+
+V logu kroku „Stáhnout data ze Sheets“ je z každé kategorie jen prvních pět
+příkladů – na úplný seznam se koukej do Summary nebo do `index.json`.
+
+Co se kontroluje:
 
 - profit z tabulky ≠ dopočet `prize − buy-in − rebuys − add-ons`
 - turnaj, kde pořadí není souvislé 1..n (v sešitu chybí řádek, nebo prázdný řádek

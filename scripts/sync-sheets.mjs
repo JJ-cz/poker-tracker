@@ -270,21 +270,18 @@ async function main() {
 
   const kreditRows = await getSheetValues(kreditSheetId, kreditSheetTitle, token);
   const kredit = parseKreditSheet(kreditSheetTitle, kreditRows);
+  // `issues` do kredit.json nepatří – žijí pohromadě v index.json
+  const { issues: _kreditIssues, ...kreditPayload } = kredit;
   await writeFile(
     path.join(outDir, 'kredit.json'),
-    `${JSON.stringify({ generatedAt, sheet: kreditSheetTitle, ...kredit }, null, 2)}\n`,
+    `${JSON.stringify({ generatedAt, sheet: kreditSheetTitle, ...kreditPayload }, null, 2)}\n`,
     'utf8'
   );
   log(
     `kredit.json: ${kredit.players.length} hráčů, ${kredit.rowsCounted} transakčních řádků, ` +
       `celkem na účtu ${kredit.total}, CUT celkem ${kredit.cutTotal}`
   );
-  if (kredit.mismatches.length) {
-    allIssues.push(`kredit: ${kredit.mismatches.length} zůstatků nesouhlasí s řádkem „Kredit“`);
-  }
-  if (kredit.ignoredColumns?.length) {
-    allIssues.push(`kredit: vynechané nehráčské sloupce (${kredit.ignoredColumns.join(', ')})`);
-  }
+  allIssues.push(...(kredit.issues ?? []));
 
   // --- index ------------------------------------------------------------
   await writeFile(
@@ -304,10 +301,61 @@ async function main() {
   log(`index.json: ${seasons.length} sezón`);
 
   if (allIssues.length) {
-    warn(`sync hotový, ale s ${allIssues.length} upozorněními:`);
-    allIssues.forEach((i) => warn(`  - ${i}`));
+    warn(`sync hotový, ale s ${allIssues.length} typy upozornění:`);
+    allIssues.forEach((i) => warn(`  - ${i.sheet}: ${i.summary}`));
   } else {
     log('sync hotový bez upozornění.');
+  }
+
+  await writeStepSummary({ generatedAt, seasons, kredit, issues: allIssues });
+}
+
+/**
+ * Souhrn běhu do Markdownu (GITHUB_STEP_SUMMARY). Je vidět rovnou na stránce
+ * workflow, takže se detaily nálezů nemusí hledat v logu – a navíc tu jsou
+ * všechny, ne jen prvních pět jako v logu.
+ */
+async function writeStepSummary({ generatedAt, seasons, kredit, issues }) {
+  if (!process.env.GITHUB_STEP_SUMMARY) return;
+
+  const lines = ['## Sync dat z Google Sheets', '', `Vygenerováno: \`${generatedAt}\``, ''];
+
+  lines.push('| Sezóna | Turnajů | Hráčů |', '|---|---:|---:|');
+  for (const season of seasons) {
+    lines.push(`| ${season.label} | ${season.sessions} | ${season.players} |`);
+  }
+  lines.push(
+    '',
+    `**Kredit:** ${kredit.players.length} hráčů · ${kredit.rowsCounted} transakčních řádků · ` +
+      `celkem na účtu ${kredit.total} · CUT celkem ${kredit.cutTotal}`,
+    ''
+  );
+
+  if (!issues.length) {
+    lines.push('✅ **Bez upozornění** – data prošla kontrolou.', '');
+  } else {
+    const total = issues.reduce((sum, i) => sum + i.count, 0);
+    lines.push(`### ⚠️ Upozornění (${total})`, '', 'Rozbal pro úplný seznam:', '');
+    for (const issue of issues) {
+      lines.push(
+        `<details><summary><strong>${issue.sheet}</strong> — ${issue.summary} (${issue.count})</summary>`,
+        '',
+        '```'
+      );
+      lines.push(...issue.details);
+      lines.push('```', '', '</details>', '');
+    }
+    lines.push(
+      'Nic z toho sync nezastavilo – data jsou vygenerovaná. Stejný seznam je i v ' +
+        '`data/index.json` (pole `issues`), takže zůstává v repu i po smazání logů.',
+      ''
+    );
+  }
+
+  try {
+    await appendFile(process.env.GITHUB_STEP_SUMMARY, `${lines.join('\n')}\n`, 'utf8');
+  } catch {
+    /* souhrn je jen bonus, sync kvůli němu nepadá */
   }
 }
 

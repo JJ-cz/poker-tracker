@@ -73,16 +73,5 @@ jobs:
           echo "Push se nepovedl ani po 3 pokusech." >&2
           exit 1
 
-      - name: Souhrn běhu
-        if: always()
-        run: |
-          {
-            echo "### Sync dat"
-            if [ -f data/index.json ]; then
-              echo '```json'
-              cat data/index.json
-              echo '```'
-            else
-              echo "Soubor \`data/index.json\` nebyl vygenerován – důvod je v bloku výše nebo v logu kroku _Stáhnout data ze Sheets_."
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
+      # Souhrn běhu (přehled sezón + úplný seznam nálezů) si píše sám
+      # scripts/sync-sheets.mjs do $GITHUB_STEP_SUMMARY – i když selže.

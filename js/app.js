@@ -841,7 +841,13 @@ async function boot() {
     : 'Datum generování dat není známé';
 
   if (state.data.issues?.length) {
-    console.warn('Sync hlásil upozornění:', state.data.issues);
+    // Nálezy kontroly dat ze syncu – úplný seznam je v data/index.json
+    // a v Summary příslušného běhu workflow.
+    console.groupCollapsed(`Sync hlásil ${state.data.issues.length} typů upozornění`);
+    state.data.issues.forEach((issue) => {
+      console.warn(`${issue.sheet ?? '?'}: ${issue.summary ?? issue}`, issue.details ?? '');
+    });
+    console.groupEnd();
   }
 }
 

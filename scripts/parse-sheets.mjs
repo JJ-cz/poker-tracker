@@ -152,22 +152,42 @@ export function mapResultHeaders(headerRow = []) {
  *
  * Každý turnaj se navíc kontroluje – pořadí má být 1..n bez duplicit a bez
  * opakovaného jména. Co neprojde, jde do `issues` (ne do koše), aby se vědělo,
- * kde v sešitu něco chybí.
+ * kde v sešitu něco chybí. Každý nález nese ÚPLNÝ seznam detailů, ne jen počet –
+ * ukládá se do data/index.json a vypisuje do Summary běhu workflow.
  */
 export function parseResultsSheet(sheetTitle, rows) {
+  const issues = [];
+
+  /**
+   * Zapíše nález. `details` je celý seznam (do logu jde jen ukázka, aby se
+   * log nezaplavil – úplný výpis nese index.json a Summary běhu).
+   */
+  const addIssue = (kind, summary, details) => {
+    if (!details.length) return;
+    issues.push({ sheet: sheetTitle, kind, summary, count: details.length, details });
+    warn(`list "${sheetTitle}": ${summary} Ukázka: ${details.slice(0, 5).join(' | ')}`);
+  };
+
   const header = findHeaderRow(rows);
   if (!header) {
     warn(`list "${sheetTitle}": nepovedlo se najít hlavičku (jméno/finish) – přeskakuji.`);
-    return { sessions: [], issues: [`Nenalezena hlavička v listu ${sheetTitle}`] };
+    return {
+      sessions: [],
+      issues: [
+        {
+          sheet: sheetTitle,
+          kind: 'missing-header',
+          summary: 'nenalezena hlavička se sloupci jméno/finish – list přeskočen',
+          count: 1,
+          details: [`list ${sheetTitle}`],
+        },
+      ],
+    };
   }
 
   const { index: headerIndex, map } = header;
   const missing = ['name', 'date', 'finish'].filter((f) => map[f] === undefined);
-  const issues = [];
-  if (missing.length) {
-    issues.push(`list ${sheetTitle}: chybí sloupce ${missing.join(', ')}`);
-    warn(`list "${sheetTitle}": chybí sloupce ${missing.join(', ')}`);
-  }
+  addIssue('missing-columns', `chybí sloupce ${missing.join(', ')}`, missing);
 
   const tournaments = [];
   let current = null;
@@ -246,11 +266,12 @@ export function parseResultsSheet(sheetTitle, rows) {
     })
     .sort((a, b) => a.date.localeCompare(b.date) || a.seq - b.seq);
 
-  const droppedNoDate = tournaments.length - sessions.length;
-  if (droppedNoDate > 0) {
-    issues.push(`${sheetTitle}: ${droppedNoDate} bloků bez data – vynechány`);
-    warn(`list "${sheetTitle}": ${droppedNoDate} bloků nemá datum, vynechávám je.`);
-  }
+  const droppedNoDate = tournaments.filter((t) => !t.date);
+  addIssue(
+    'blocks-without-date',
+    `${droppedNoDate.length} bloků nemá datum – vynechány`,
+    droppedNoDate.map((t) => `blok s hráči ${t.players.map((p) => p.name).join(',')}`)
+  );
 
   // --- kontrola kvality dat ---------------------------------------------
   const mismatches = [];
@@ -280,27 +301,21 @@ export function parseResultsSheet(sheetTitle, rows) {
     }
   }
 
-  const report = (list, summary, detail) => {
-    if (!list.length) return;
-    warn(`list "${sheetTitle}": ${detail} Ukázka: ${list.slice(0, 5).join(' | ')}`);
-    issues.push(`${sheetTitle}: ${list.length} ${summary}`);
-  };
-
-  report(
-    mismatches,
-    'rozdílů v profitu (viz log)',
-    `${mismatches.length}× se profit z tabulky liší od dopočtu (prize - buyin - rebuys - addons).`
+  addIssue(
+    'profit-mismatch',
+    `${mismatches.length}× se profit z tabulky liší od dopočtu (prize − buy-in − rebuys − add-ons)`,
+    mismatches
   );
-  report(
-    oddFinishes,
-    'turnajů s nesouvislým pořadím (viz log)',
+  addIssue(
+    'odd-finishes',
     `${oddFinishes.length} turnajů nemá pořadí 1..n – buď v sešitu chybí řádek, ` +
-      'nebo prázdný řádek rozsekl turnaj na dva.'
+      'nebo prázdný řádek rozsekl turnaj na dva',
+    oddFinishes
   );
-  report(
-    duplicateNames,
-    'turnajů s opakovaným jménem (viz log)',
-    `${duplicateNames.length} turnajů má stejného hráče dvakrát – nejspíš chybí oddělující prázdný řádek.`
+  addIssue(
+    'duplicate-names',
+    `${duplicateNames.length} turnajů má stejného hráče dvakrát – nejspíš chybí oddělující prázdný řádek`,
+    duplicateNames
   );
 
   log(`list "${sheetTitle}": ${sessions.length} turnajů v ${seqByDate.size} hracích dnech`);
@@ -425,13 +440,31 @@ export function parseKreditSheet(sheetTitle, rows) {
     .filter((p) => p.reportedBalance !== null && Math.abs(p.reportedBalance - p.balance) > 0.01)
     .map((p) => `${p.name}: tabulka ${p.reportedBalance}, dopočet ${p.balance}`);
 
+  const issues = [];
   if (mismatches.length) {
     warn(
       `kredit: dopočtený zůstatek se u ${mismatches.length} hráčů liší od řádku "Kredit" v tabulce. ` +
         mismatches.join(' | ')
     );
+    issues.push({
+      sheet: sheetTitle,
+      kind: 'kredit-balance-mismatch',
+      summary: `${mismatches.length} zůstatků nesouhlasí s řádkem „Kredit“ v sešitu`,
+      count: mismatches.length,
+      details: mismatches,
+    });
   } else if (reported.size) {
     log(`kredit: dopočtené zůstatky souhlasí s řádkem "Kredit" v tabulce (${reported.size} hráčů).`);
+  }
+
+  if (ignoredColumns.length) {
+    issues.push({
+      sheet: sheetTitle,
+      kind: 'kredit-ignored-columns',
+      summary: `${ignoredColumns.length} nehráčských (čistě číselných) sloupců vynecháno`,
+      count: ignoredColumns.length,
+      details: ignoredColumns.map((name) => `sloupec „${name}“`),
+    });
   }
 
   return {
@@ -442,6 +475,7 @@ export function parseKreditSheet(sheetTitle, rows) {
     hasSumColumn: sumColumn !== null,
     ignoredColumns,
     mismatches,
+    issues,
   };
 }
 

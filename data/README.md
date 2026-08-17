@@ -5,7 +5,7 @@ Tady žijí **generovaná** data. Ručně sem nic nepiš – workflow
 
 | soubor | co v něm je |
 |---|---|
-| `index.json` | seznam sezón, čas generování, případná upozornění ze syncu |
+| `index.json` | seznam sezón, čas generování a `issues` – úplný seznam nálezů kontroly dat (`sheet`, `kind`, `summary`, `count`, `details`) |
 | `vysledky-<rok>.json` | turnaje daného roku (`date` + `seq` = číslo turnaje v rámci dne), každý se seznamem hráčů (finish, prize, buy-in, rebuys, add-ons, profit) |
 | `vysledky-stare.json` | volitelně list „staré“ (jen když sync běží s `INCLUDE_LEGACY=true`) |
 | `kredit.json` | dopočítané zůstatky kreditu + CUT celkem |

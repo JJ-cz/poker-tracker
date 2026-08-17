@@ -114,7 +114,8 @@ test('podezřelý turnaj se nahlásí, ale data se nezahodí', () => {
   ]);
   assert.equal(chybiVitez.sessions.length, 1);
   assert.equal(chybiVitez.sessions[0].players.length, 2);
-  assert.match(chybiVitez.issues.join(' '), /nesouvislým pořadím/);
+  assert.deepEqual(chybiVitez.issues.map((i) => i.kind), ['odd-finishes']);
+  assert.deepEqual(chybiVitez.issues[0].details, ['2024-01-19: 2 hráčů, pořadí 2,3'], 'detail nese datum i pořadí');
 
   const dvakratTyz = parseResultsSheet('Výsledky 2026', [
     ['datum', 'jméno', 'finish'],
@@ -123,7 +124,8 @@ test('podezřelý turnaj se nahlásí, ale data se nezahodí', () => {
     ['13.2.2026', 'Aťourek', 3],
   ]);
   assert.equal(dvakratTyz.sessions.length, 1);
-  assert.match(dvakratTyz.issues.join(' '), /opakovaným jménem/);
+  assert.deepEqual(dvakratTyz.issues.map((i) => i.kind), ['duplicate-names']);
+  assert.equal(dvakratTyz.issues[0].count, 1);
 });
 
 test('řádky před prvním datem se ignorují, nespadne to', () => {
@@ -156,7 +158,7 @@ test('list Výsledky: jiné pořadí sloupců a chybějící add-ons', () => {
 test('list bez rozpoznatelné hlavičky se přeskočí, nespadne', () => {
   const { sessions, issues } = parseResultsSheet('Výsledky 2019', [['a', 'b'], [1, 2]]);
   assert.equal(sessions.length, 0);
-  assert.equal(issues.length, 1);
+  assert.deepEqual(issues.map((i) => i.kind), ['missing-header']);
 });
 
 test('profit z tabulky se hlásí, když nesouhlasí s dopočtem', () => {
@@ -168,7 +170,12 @@ test('profit z tabulky se hlásí, když nesouhlasí s dopočtem', () => {
   assert.equal(sessions[0].players[0].profit, 800, 'platí vlastní dopočet');
   assert.equal(sessions[0].players[0].sheetProfit, 777);
   assert.equal(sessions[0].players[0].profitMismatch, true);
-  assert.equal(issues.length, 1);
+  assert.deepEqual(issues.map((i) => i.kind), ['profit-mismatch']);
+  assert.deepEqual(
+    issues[0].details,
+    ['2021-02-01 / JJ: tabulka 777, dopočet 800'],
+    'nález nese ÚPLNÝ seznam detailů, ne jen počet'
+  );
 });
 
 test('kredit: zůstatky, CUT mimo hráče, souhrnný řádek se nesčítá', () => {
@@ -202,6 +209,8 @@ test('kredit: rozdíl proti tabulce se nahlásí, prázdný hráč se vynechá',
     ['1.1.2021', 500, 0, 500],
   ]);
   assert.equal(rozdil.mismatches.length, 1);
+  assert.deepEqual(rozdil.issues.map((i) => i.kind), ['kredit-balance-mismatch']);
+  assert.deepEqual(rozdil.issues[0].details, ['JJ: tabulka 999, dopočet 500']);
 
   const prazdny = parseKreditSheet('kredit', [
     ['Datum', 'JJ', 'Nikdo', 'CUT', 'SUM'],
@@ -217,6 +226,7 @@ test('kredit: čistě číselný sloupec není hráč', () => {
   ]);
   assert.deepEqual(kredit.players.map((p) => p.name), ['JJ'], 'sloupec 1541 se do hráčů nepočítá');
   assert.deepEqual(kredit.ignoredColumns, ['1541']);
+  assert.deepEqual(kredit.issues.map((i) => i.kind), ['kredit-ignored-columns']);
 });
 
 test('kredit: hráč bez jediné transakce a s nulou se nezobrazuje', () => {
