@@ -39,8 +39,9 @@ jobs:
           node-version: '22'
 
       # parser má testy – ať se nesypou data do repa, když se rozbije logika
+      # (explicitní glob: `node --test tests/` na Node 22+ hledá modul, ne složku)
       - name: Testy parseru
-        run: node --test tests/
+        run: node --test "tests/**/*.test.mjs"
 
       - name: Stáhnout data ze Sheets a vygenerovat JSON
         env:

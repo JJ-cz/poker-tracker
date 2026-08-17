@@ -75,7 +75,7 @@ Chart.js je vendorovaný v `vendor/`, takže stránka nenačítá nic z CDN.
 
 `Actions → Sync dat z Google Sheets → Run workflow`. Workflow:
 
-1. spustí testy parseru (`node --test tests/`),
+1. spustí testy parseru (`node --test "tests/**/*.test.mjs"`),
 2. přihlásí se ke Sheets API přes service account,
 3. najde všechny listy `Výsledky <rok>` (dynamicky, nic není hardcoded),
 4. vygeneruje `data/*.json` a commitne je zpět do `main`.
@@ -130,7 +130,7 @@ můžeš data doplnit ručně ve stejném formátu (viz [data/README.md](data/RE
 Testy parseru (potřebují Node 18+):
 
 ```bash
-node --test tests/
+node --test "tests/**/*.test.mjs"
 ```
 
 ## Struktura
