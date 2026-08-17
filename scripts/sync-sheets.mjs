@@ -316,7 +316,11 @@ async function main() {
  * všechny, ne jen prvních pět jako v logu.
  */
 async function writeStepSummary({ generatedAt, seasons, kredit, issues }) {
-  if (!process.env.GITHUB_STEP_SUMMARY) return;
+  const target = process.env.GITHUB_STEP_SUMMARY;
+  if (!target) {
+    log('GITHUB_STEP_SUMMARY není nastavené – souhrn běhu se nepíše (běžím mimo Actions?).');
+    return;
+  }
 
   const lines = ['## Sync dat z Google Sheets', '', `Vygenerováno: \`${generatedAt}\``, ''];
 
@@ -352,10 +356,14 @@ async function writeStepSummary({ generatedAt, seasons, kredit, issues }) {
     );
   }
 
+  const markdown = `${lines.join('\n')}\n`;
   try {
-    await appendFile(process.env.GITHUB_STEP_SUMMARY, `${lines.join('\n')}\n`, 'utf8');
-  } catch {
-    /* souhrn je jen bonus, sync kvůli němu nepadá */
+    await appendFile(target, markdown, 'utf8');
+    // ať se ticho nedá zaměnit za úspěch
+    log(`souhrn běhu zapsán do ${target} (${markdown.length} znaků, ${issues.length} nálezů)`);
+  } catch (error) {
+    // sync kvůli souhrnu nepadá, ale mlčet se nesmí
+    warn(`souhrn běhu se nepovedlo zapsat do ${target}: ${error.message}`);
   }
 }
 
