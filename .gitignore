@@ -17,3 +17,6 @@
 # node (projekt nemá build ani závislosti, jen pro případ)
 node_modules/
 npm-debug.log*
+
+# pracovní podklady k zadání (screenshoty z chatu) – nepatří do repa
+zadání chat/
