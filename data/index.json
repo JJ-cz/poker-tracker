@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-17T07:49:44.128Z",
+  "generatedAt": "2026-08-17T08:07:39.542Z",
   "seasons": [
     {
       "id": "2021",
@@ -55,17 +55,265 @@
     "players": 11
   },
   "issues": [
-    "Výsledky 2021: 9 rozdílů v profitu (viz log)",
-    "Výsledky 2021: 1 turnajů s opakovaným jménem (viz log)",
-    "Výsledky 2022: 14 rozdílů v profitu (viz log)",
-    "Výsledky 2022: 1 turnajů s nesouvislým pořadím (viz log)",
-    "Výsledky 2022: 1 turnajů s opakovaným jménem (viz log)",
-    "Výsledky 2023: 21 rozdílů v profitu (viz log)",
-    "Výsledky 2024: 49 rozdílů v profitu (viz log)",
-    "Výsledky 2025: 49 rozdílů v profitu (viz log)",
-    "Výsledky 2025: 1 turnajů s nesouvislým pořadím (viz log)",
-    "Výsledky 2026: 14 rozdílů v profitu (viz log)",
-    "Výsledky 2026: 1 turnajů s opakovaným jménem (viz log)",
-    "kredit: vynechané nehráčské sloupce (1657, 46786, 48800)"
+    {
+      "sheet": "Výsledky 2021",
+      "kind": "profit-mismatch",
+      "summary": "9× se profit z tabulky liší od dopočtu (prize − buy-in − rebuys − add-ons)",
+      "count": 9,
+      "details": [
+        "2021-07-09 / Martin: tabulka 156, dopočet 158",
+        "2021-08-27 (2. turnaj) / JJ: tabulka 430, dopočet 420",
+        "2021-09-03 / Aťourek: tabulka -50, dopočet -100",
+        "2021-10-15 / Lůďa: tabulka -150, dopočet -200",
+        "2021-11-17 (2. turnaj) / Aťourek: tabulka -50, dopočet -100",
+        "2021-12-03 (2. turnaj) / Jiří: tabulka 285, dopočet 480",
+        "2021-12-03 (2. turnaj) / Lůďa: tabulka 135, dopočet 260",
+        "2021-12-03 (2. turnaj) / Aťourek: tabulka 90, dopočet 170",
+        "2021-12-03 (3. turnaj) / Hensn: tabulka 420, dopočet 370"
+      ]
+    },
+    {
+      "sheet": "Výsledky 2021",
+      "kind": "duplicate-names",
+      "summary": "1 turnajů má stejného hráče dvakrát – nejspíš chybí oddělující prázdný řádek",
+      "count": 1,
+      "details": [
+        "2021-12-03 (2. turnaj): Jiří,Lůďa,Aťourek,Anička,Pumča,Hensn,Lůďa"
+      ]
+    },
+    {
+      "sheet": "Výsledky 2022",
+      "kind": "profit-mismatch",
+      "summary": "14× se profit z tabulky liší od dopočtu (prize − buy-in − rebuys − add-ons)",
+      "count": 14,
+      "details": [
+        "2022-02-18 (3. turnaj) / Anička: tabulka -252, dopočet -152",
+        "2022-03-11 / Anička: tabulka -152, dopočet -92",
+        "2022-04-30 / Aťourek: tabulka 64, dopočet 128",
+        "2022-04-30 / Anička: tabulka 82, dopočet -62",
+        "2022-06-03 (4. turnaj) / Hensn: tabulka -175, dopočet -125",
+        "2022-06-17 / Anička: tabulka 160, dopočet 60",
+        "2022-07-30 (3. turnaj) / Anička: tabulka -22, dopočet -52",
+        "2022-09-23 / Anička: tabulka 283, dopočet 286",
+        "2022-10-14 (2. turnaj) / Martin: tabulka 468, dopočet 448",
+        "2022-10-28 (4. turnaj) / Hensn: tabulka -245, dopočet -25",
+        "2022-11-04 (4. turnaj) / Pumča: tabulka -195, dopočet -295",
+        "2022-12-30 (2. turnaj) / Hensn: tabulka 1168, dopočet 768",
+        "2022-12-30 (2. turnaj) / Jiří: tabulka 528, dopočet 378",
+        "2022-12-30 (2. turnaj) / Anička: tabulka 98, dopočet 48"
+      ]
+    },
+    {
+      "sheet": "Výsledky 2022",
+      "kind": "odd-finishes",
+      "summary": "1 turnajů nemá pořadí 1..n – buď v sešitu chybí řádek, nebo prázdný řádek rozsekl turnaj na dva",
+      "count": 1,
+      "details": [
+        "2022-02-04: 10 hráčů, pořadí 1,2,3,4,5,6,7,8,8,10"
+      ]
+    },
+    {
+      "sheet": "Výsledky 2022",
+      "kind": "duplicate-names",
+      "summary": "1 turnajů má stejného hráče dvakrát – nejspíš chybí oddělující prázdný řádek",
+      "count": 1,
+      "details": [
+        "2022-09-02: Hensn,Aťourek,Martin,Aťourek,Jiří"
+      ]
+    },
+    {
+      "sheet": "Výsledky 2023",
+      "kind": "profit-mismatch",
+      "summary": "21× se profit z tabulky liší od dopočtu (prize − buy-in − rebuys − add-ons)",
+      "count": 21,
+      "details": [
+        "2023-02-24 / Pumča: tabulka -152, dopočet -143",
+        "2023-04-14 (2. turnaj) / Lůďa: tabulka -102, dopočet -52",
+        "2023-06-02 (4. turnaj) / Hensn: tabulka 135, dopočet 355",
+        "2023-06-28 (3. turnaj) / Hensn: tabulka 475, dopočet 478",
+        "2023-06-28 (3. turnaj) / Anička: tabulka -345, dopočet -342",
+        "2023-06-28 (3. turnaj) / Aťourek: tabulka -145, dopočet -142",
+        "2023-06-30 (3. turnaj) / Anička: tabulka -52, dopočet -152",
+        "2023-09-01 (2. turnaj) / Jiří: tabulka 648, dopočet 363",
+        "2023-09-01 (2. turnaj) / Aťourek: tabulka 148, dopočet -23",
+        "2023-09-29 (2. turnaj) / Pumča: tabulka 268, dopočet 218",
+        "2023-10-06 / Anička: tabulka 223, dopočet 225",
+        "2023-10-06 / Pumča: tabulka -5, dopočet -7",
+        "2023-12-15 (2. turnaj) / Pumča: tabulka 188, dopočet 218",
+        "2023-12-22 (3. turnaj) / Martin: tabulka 58, dopočet 108",
+        "2023-12-22 (3. turnaj) / Aťourek: tabulka -152, dopočet -202",
+        "2023-12-29 (2. turnaj) / Lůďa: tabulka 1018, dopočet 618",
+        "2023-12-29 (2. turnaj) / Anička: tabulka 298, dopočet 148",
+        "2023-12-29 (2. turnaj) / Martin: tabulka 28, dopočet -22",
+        "2023-12-29 (3. turnaj) / Hensn: tabulka 948, dopočet 548",
+        "2023-12-29 (3. turnaj) / Pumča: tabulka 478, dopočet 328",
+        "2023-12-29 (3. turnaj) / Jiří: tabulka 218, dopočet 168"
+      ]
+    },
+    {
+      "sheet": "Výsledky 2024",
+      "kind": "profit-mismatch",
+      "summary": "49× se profit z tabulky liší od dopočtu (prize − buy-in − rebuys − add-ons)",
+      "count": 49,
+      "details": [
+        "2024-02-09 (2. turnaj) / Aťourek: tabulka 368, dopočet 518",
+        "2024-02-09 (2. turnaj) / Jiří: tabulka 58, dopočet 308",
+        "2024-02-17 / Pumča: tabulka -152, dopočet -122",
+        "2024-02-17 / JJ: tabulka -122, dopočet -152",
+        "2024-03-01 (2. turnaj) / Aťourek: tabulka 618, dopočet 698",
+        "2024-03-01 (2. turnaj) / JJ: tabulka 218, dopočet 258",
+        "2024-03-01 (2. turnaj) / Jiří: tabulka 58, dopočet 88",
+        "2024-04-26 (3. turnaj) / Aťourek: tabulka 208, dopočet 206",
+        "2024-04-26 (3. turnaj) / JJ: tabulka 88, dopočet 98",
+        "2024-05-07 (4. turnaj) / Anička: tabulka 8, dopočet -2",
+        "2024-05-07 (5. turnaj) / Pumča: tabulka 218, dopočet 295",
+        "2024-05-07 (5. turnaj) / Aťourek: tabulka 78, dopočet 155",
+        "2024-05-07 (5. turnaj) / Anička: tabulka 8, dopočet 75",
+        "2024-05-07 (5. turnaj) / Jiří: tabulka -152, dopočet -75",
+        "2024-05-07 (5. turnaj) / Hensn: tabulka -152, dopočet -75",
+        "2024-05-10 (2. turnaj) / Hensn: tabulka 348, dopočet 448",
+        "2024-05-10 (3. turnaj) / Hensn: tabulka -295, dopočet -55",
+        "2024-05-17 (3. turnaj) / Jiří: tabulka 425, dopočet 225",
+        "2024-05-17 (3. turnaj) / Hensn: tabulka 205, dopočet 85",
+        "2024-05-17 (3. turnaj) / Aťourek: tabulka -115, dopočet -195",
+        "2024-06-13 (3. turnaj) / Pumča: tabulka 5, dopočet 35",
+        "2024-06-28 (3. turnaj) / Martin: tabulka 65, dopočet 115",
+        "2024-06-28 (3. turnaj) / Jiří: tabulka -55, dopočet 95",
+        "2024-07-05 (2. turnaj) / Aťourek: tabulka 165, dopočet 65",
+        "2024-07-05 (2. turnaj) / Lůďa: tabulka 65, dopočet 85",
+        "2024-07-12 (2. turnaj) / JJ: tabulka 733, dopočet 633",
+        "2024-07-12 (3. turnaj) / Martin: tabulka -100, dopočet -50",
+        "2024-08-10 (4. turnaj) / Aťourek: tabulka 85, dopočet 75",
+        "2024-08-30 / Anička: tabulka -302, dopočet -252",
+        "2024-08-30 / Jiří: tabulka -302, dopočet -252",
+        "2024-09-20 (4. turnaj) / Hensn: tabulka 215, dopočet 224",
+        "2024-09-28 (2. turnaj) / Hensn: tabulka -302, dopočet -402",
+        "2024-10-26 (2. turnaj) / Hensn: tabulka 78, dopočet -22",
+        "2024-10-26 (2. turnaj) / Anička: tabulka -352, dopočet -252",
+        "2024-10-26 (2. turnaj) / Kajmi: tabulka -52, dopočet -402",
+        "2024-10-27 (2. turnaj) / Pumča: tabulka 248, dopočet 298",
+        "2024-10-27 (2. turnaj) / Aťourek: tabulka 8, dopočet 38",
+        "2024-10-27 (2. turnaj) / Hensn: tabulka 88, dopočet 108",
+        "2024-11-15 / Anička: tabulka 288, dopočet 338",
+        "2024-12-20 (3. turnaj) / Anička: tabulka 178, dopočet 98",
+        "2024-12-27 / Jiří: tabulka 1548, dopočet 1048",
+        "2024-12-27 / Martin: tabulka 908, dopočet 608",
+        "2024-12-27 / Anička: tabulka 288, dopočet 188",
+        "2024-12-27 (2. turnaj) / Aťourek: tabulka 1448, dopočet 948",
+        "2024-12-27 (2. turnaj) / Martin: tabulka 1058, dopočet 758",
+        "2024-12-27 (2. turnaj) / Jiří: tabulka 138, dopočet 38",
+        "2024-12-27 (3. turnaj) / Aťourek: tabulka 1248, dopočet 748",
+        "2024-12-27 (3. turnaj) / Hensn: tabulka 658, dopočet 358",
+        "2024-12-27 (3. turnaj) / Anička: tabulka 338, dopočet 238"
+      ]
+    },
+    {
+      "sheet": "Výsledky 2025",
+      "kind": "profit-mismatch",
+      "summary": "49× se profit z tabulky liší od dopočtu (prize − buy-in − rebuys − add-ons)",
+      "count": 49,
+      "details": [
+        "2025-01-03 (2. turnaj) / Jiří: tabulka 848, dopočet -52",
+        "2025-01-03 (2. turnaj) / Aťourek: tabulka -2, dopočet 98",
+        "2025-01-03 (3. turnaj) / Pumča: tabulka 438, dopočet 408",
+        "2025-01-03 (6. turnaj) / Jiří: tabulka 488, dopočet 482",
+        "2025-01-03 (6. turnaj) / Hensn: tabulka 208, dopočet 218",
+        "2025-01-04 (4. turnaj) / Martin: tabulka 513, dopočet 813",
+        "2025-01-04 (4. turnaj) / Anička: tabulka 178, dopočet 478",
+        "2025-01-04 (4. turnaj) / Aťourek: tabulka 8, dopočet 308",
+        "2025-01-04 (4. turnaj) / Hensn: tabulka -352, dopočet -52",
+        "2025-01-04 (4. turnaj) / Jiří: tabulka -352, dopočet -52",
+        "2025-02-07 (2. turnaj) / Jiří: tabulka -52, dopočet -2",
+        "2025-02-21 (3. turnaj) / Anička: tabulka 348, dopočet 448",
+        "2025-02-21 (3. turnaj) / Aťourek: tabulka -252, dopočet -352",
+        "2025-02-28 (5. turnaj) / Jiří: tabulka 680, dopočet 730",
+        "2025-02-28 (5. turnaj) / Aťourek: tabulka 343, dopočet 393",
+        "2025-02-28 (5. turnaj) / Anička: tabulka 8, dopočet 58",
+        "2025-02-28 (5. turnaj) / Kajmi: tabulka -252, dopočet -202",
+        "2025-02-28 (5. turnaj) / Pumča: tabulka -502, dopočet -452",
+        "2025-02-28 (5. turnaj) / Hensn: tabulka -277, dopočet -227",
+        "2025-03-14 (2. turnaj) / Martin: tabulka -202, dopočet -152",
+        "2025-04-11 (5. turnaj) / Pumča: tabulka 593, dopočet 541",
+        "2025-04-11 (5. turnaj) / Aťourek: tabulka 308, dopočet 256",
+        "2025-04-11 (5. turnaj) / Anička: tabulka -302, dopočet -354",
+        "2025-04-11 (5. turnaj) / Jiří: tabulka -302, dopočet -354",
+        "2025-04-11 (5. turnaj) / Hensn: tabulka -302, dopočet -354",
+        "2025-04-11 (7. turnaj) / Hensn: tabulka 138, dopočet 158",
+        "2025-04-18 / Hensn: tabulka 98, dopočet 128",
+        "2025-05-31 / Hensn: tabulka 598, dopočet 498",
+        "2025-06-07 (7. turnaj) / Kajmi: tabulka -900, dopočet -800",
+        "2025-06-07 (7. turnaj) / Hensn: tabulka -1900, dopočet -1700",
+        "2025-06-13 (4. turnaj) / Anička: tabulka 388, dopočet 298",
+        "2025-07-25 (3. turnaj) / Jiří: tabulka 78, dopočet -22",
+        "2025-10-03 (3. turnaj) / Jiří: tabulka 268, dopočet 368",
+        "2025-10-03 (3. turnaj) / Aťourek: tabulka 508, dopočet 408",
+        "2025-10-24 (3. turnaj) / Jiří: tabulka -202, dopočet -152",
+        "2025-10-24 (5. turnaj) / Aťourek: tabulka -202, dopočet -242",
+        "2025-10-31 (3. turnaj) / Hensn: tabulka 218, dopočet 228",
+        "2025-11-29 (3. turnaj) / Jiří: tabulka 648, dopočet -252",
+        "2025-12-12 (2. turnaj) / Hensn: tabulka 1018, dopočet 918",
+        "2025-12-12 (2. turnaj) / Aťourek: tabulka 328, dopočet 268",
+        "2025-12-12 (2. turnaj) / Martin: tabulka 248, dopočet 208",
+        "2025-12-12 (3. turnaj) / Aťourek: tabulka 138, dopočet 88",
+        "2025-12-26 / Hensn: tabulka 1418, dopočet 918",
+        "2025-12-26 / Anička: tabulka 748, dopočet 448",
+        "2025-12-26 / Hul mě hned: tabulka 378, dopočet 278",
+        "2025-12-26 (2. turnaj) / Pumča: tabulka 1168, dopočet 668",
+        "2025-12-26 (2. turnaj) / Aťourek: tabulka 378, dopočet 78",
+        "2025-12-26 (2. turnaj) / Hul mě hned: tabulka 48, dopočet -52",
+        "2025-12-26 (3. turnaj) / Jiří: tabulka -552, dopočet -452"
+      ]
+    },
+    {
+      "sheet": "Výsledky 2025",
+      "kind": "odd-finishes",
+      "summary": "1 turnajů nemá pořadí 1..n – buď v sešitu chybí řádek, nebo prázdný řádek rozsekl turnaj na dva",
+      "count": 1,
+      "details": [
+        "2025-11-21 (2. turnaj): 9 hráčů, pořadí 1,2,3,4,5,6,7,8,8"
+      ]
+    },
+    {
+      "sheet": "Výsledky 2026",
+      "kind": "profit-mismatch",
+      "summary": "14× se profit z tabulky liší od dopočtu (prize − buy-in − rebuys − add-ons)",
+      "count": 14,
+      "details": [
+        "2026-01-30 (4. turnaj) / Hensn: tabulka 633, dopočet 653",
+        "2026-01-30 (4. turnaj) / Jiří: tabulka 458, dopočet 478",
+        "2026-01-30 (4. turnaj) / Aťourek: tabulka -482, dopočet -462",
+        "2026-01-30 (4. turnaj) / Kajmi: tabulka -227, dopočet -207",
+        "2026-01-30 (4. turnaj) / Anička: tabulka -392, dopočet -372",
+        "2026-02-13 (2. turnaj) / Aťourek: tabulka 548, dopočet 618",
+        "2026-02-13 (2. turnaj) / Pumča: tabulka 118, dopočet -32",
+        "2026-02-13 (2. turnaj) / Aťourek: tabulka -72, dopočet -222",
+        "2026-02-13 (3. turnaj) / Hensn: tabulka 198, dopočet 248",
+        "2026-02-14 / Anička: tabulka 318, dopočet 218",
+        "2026-02-14 (2. turnaj) / Aťourek: tabulka 518, dopočet 368",
+        "2026-02-14 (2. turnaj) / Anička: tabulka -72, dopočet 178",
+        "2026-02-14 (2. turnaj) / Hensn: tabulka -52, dopočet -2",
+        "2026-02-14 (2. turnaj) / Kajmi: tabulka -402, dopočet -452"
+      ]
+    },
+    {
+      "sheet": "Výsledky 2026",
+      "kind": "duplicate-names",
+      "summary": "1 turnajů má stejného hráče dvakrát – nejspíš chybí oddělující prázdný řádek",
+      "count": 1,
+      "details": [
+        "2026-02-13 (2. turnaj): Aťourek,Pumča,Aťourek,Hensn"
+      ]
+    },
+    {
+      "sheet": "Kredit",
+      "kind": "kredit-ignored-columns",
+      "summary": "3 nehráčských (čistě číselných) sloupců vynecháno",
+      "count": 3,
+      "details": [
+        "sloupec „1657“",
+        "sloupec „46786“",
+        "sloupec „48800“"
+      ]
+    }
   ]
 }
