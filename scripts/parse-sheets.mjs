@@ -496,7 +496,9 @@ export function normalizeSheetId(value, name) {
         'kód z URL: https://docs.google.com/spreadsheets/d/<TOHLE>/edit'
     );
   }
-  if (fromUrl) log(`${name}: z odkazu vytaženo ID ${id}`);
+  // ID se schválně NEloguje – logy Actions jsou u public repa veřejné,
+  // a GitHub maskuje jen přesnou hodnotu secretu, ne její část.
+  if (fromUrl) log(`${name}: vstup je odkaz, použil jsem z něj ID (${id.length} znaků)`);
   return id;
 }
 

@@ -146,6 +146,7 @@ js/palette.js           barevné tokeny a přiřazení barvy hráči
 js/format.js            formátování čísel a dat (cs-CZ)
 js/app.js               propojení stavu a UI
 scripts/parse-sheets.mjs  parser tabulek (čistá logika, bez Node API)
+scripts/http-retry.mjs    opakování HTTP při přechodných chybách Google API
 scripts/sync-sheets.mjs   Sheets API + zápis JSON (běží v Actions)
 scripts/serve.py          lokální dev server
 tests/                  testy parseru
@@ -178,6 +179,27 @@ Co se kontroluje:
 Nic z toho sync nezastaví – data se vygenerují a upozornění jsou vodítko, kde
 v sešitu něco doladit. Profit appka vždy počítá sama, hodnota z tabulky slouží
 jen na tuhle kontrolu.
+
+## Když sync spadne
+
+Google Sheets API občas vrátí přechodné **503 „The service is currently
+unavailable“** – není to chyba konfigurace, jen chvilkový výpadek na straně
+Google. Stalo se to 4× během prvního měsíce a pokaždé to znamenalo ruční
+restart běhu.
+
+Sync proto přechodné chyby (408, 425, 429, 500, 502, 503, 504 a síťové
+výjimky) **sám opakuje** – 5 pokusů s exponenciálním odstupem 1–15 s, plus
+respektuje hlavičku `Retry-After`. Každé opakování je vidět v logu. Trvalé
+chyby (401/403/404…) se neopakují, protože by to nemělo smysl.
+
+Když ani opakování nepomůže, běh selže a přijde e-mail. Pak stačí v Actions
+kliknout **Re-run jobs** – pozor, tím se přepíše výsledek téhož běhu, takže
+původní chyba z API zmizí; dohledat ji jde přes `?attempt=1` v URL nebo přes
+API (`/actions/runs/<id>/attempts/1/logs`).
+
+Do logu se schválně nevypisují ID sešitů ani e-mail service accountu – logy
+Actions jsou u public repa veřejné a GitHub maskuje jen přesnou hodnotu
+secretu, ne její část.
 
 ## Známé mezery
 

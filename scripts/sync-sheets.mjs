@@ -25,6 +25,7 @@ import { createSign } from 'node:crypto';
 import { appendFile, mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 
+import { fetchWithRetry } from './http-retry.mjs';
 import {
   log,
   normalizeHeader,
@@ -105,14 +106,18 @@ async function getAccessToken(credentials) {
 
   const assertion = `${header}.${claims}.${signature}`;
 
-  const res = await fetch(TOKEN_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-      assertion,
-    }),
-  });
+  const res = await fetchWithRetry(
+    TOKEN_URL,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({
+        grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+        assertion,
+      }),
+    },
+    { label: 'přihlášení ke Google', onRetry: logRetry }
+  );
 
   if (!res.ok) {
     throw new Error(`Autentizace ke Google selhala (${res.status}): ${await res.text()}`);
@@ -126,8 +131,28 @@ async function getAccessToken(credentials) {
 // Sheets API
 // ---------------------------------------------------------------------------
 
+/** Zamaskuje e-mail na tvar "pok…@…gserviceaccount.com" pro veřejný log. */
+function maskEmail(email) {
+  const [user = '', domain = ''] = String(email).split('@');
+  const parts = domain.split('.');
+  const tail = parts.length > 1 ? `…${parts.slice(-2).join('.')}` : '…';
+  return `${user.slice(0, 3)}…@${tail}`;
+}
+
+/** Hlášení o opakovaném pokusu – ať je v logu vidět, že Google zlobil. */
+function logRetry({ label, attempt, attempts, delay, reason }) {
+  warn(
+    `${label}: ${reason} – zkouším znovu (pokus ${attempt}/${attempts - 1} ` +
+      `z opakování, čekám ${Math.round(delay / 100) / 10} s)`
+  );
+}
+
 async function apiGet(url, token) {
-  const res = await fetch(url, { headers: { Authorization: `Bearer ${token}` } });
+  const res = await fetchWithRetry(
+    url,
+    { headers: { Authorization: `Bearer ${token}` } },
+    { label: 'Sheets API', onRetry: logRetry }
+  );
   if (!res.ok) {
     const body = await res.text();
     let hint = '';
@@ -135,6 +160,8 @@ async function apiGet(url, token) {
       hint = ' – je sešit nasdílený service accountu jako Prohlížitel a je zapnuté Google Sheets API?';
     } else if (res.status === 404) {
       hint = ' – zkontroluj ID sešitu v GitHub Secrets.';
+    } else if (res.status >= 500) {
+      hint = ' – přechodná chyba na straně Google, opakované pokusy nepomohly. Zkus běh pustit znovu.';
     }
     throw new Error(`Sheets API ${res.status}${hint}\n${body}`);
   }
@@ -173,7 +200,8 @@ async function main() {
   const generatedAt = new Date().toISOString();
 
   await mkdir(outDir, { recursive: true });
-  log(`service account: ${credentials.client_email}`);
+  // e-mail service accountu taky nepatří do veřejného logu
+  log(`service account: ${maskEmail(credentials.client_email)}`);
 
   const token = await getAccessToken(credentials);
   log('access token OK');
