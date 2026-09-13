@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-12T08:37:53.522Z",
+  "generatedAt": "2026-09-13T09:32:26.863Z",
   "seasons": [
     {
       "id": "2021",
@@ -46,7 +46,7 @@
       "label": "2026",
       "year": 2026,
       "file": "data/vysledky-2026.json",
-      "sessions": 200,
+      "sessions": 203,
       "players": 9
     }
   ],
@@ -310,9 +310,9 @@
       "summary": "3 nehráčských (čistě číselných) sloupců vynecháno",
       "count": 3,
       "details": [
-        "sloupec „1741“",
-        "sloupec „46971“",
-        "sloupec „49069“"
+        "sloupec „1767“",
+        "sloupec „47649“",
+        "sloupec „49773“"
       ]
     }
   ]
