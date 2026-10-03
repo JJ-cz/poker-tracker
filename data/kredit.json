@@ -1,18 +1,30 @@
 {
-  "generatedAt": "2026-10-02T10:29:34.161Z",
+  "generatedAt": "2026-10-03T09:51:22.891Z",
   "sheet": "Kredit",
   "players": [
     {
       "name": "Hensn",
-      "balance": 22497,
-      "transactions": 120,
-      "reportedBalance": 22497
+      "balance": 21145,
+      "transactions": 121,
+      "reportedBalance": 21145
     },
     {
       "name": "Jiří",
-      "balance": 19015,
-      "transactions": 94,
-      "reportedBalance": 19015
+      "balance": 18658,
+      "transactions": 95,
+      "reportedBalance": 18658
+    },
+    {
+      "name": "Aťourek",
+      "balance": 2374,
+      "transactions": 125,
+      "reportedBalance": 2374
+    },
+    {
+      "name": "Kajmi",
+      "balance": 1904,
+      "transactions": 72,
+      "reportedBalance": 1904
     },
     {
       "name": "Ludovit",
@@ -21,16 +33,10 @@
       "reportedBalance": 1720
     },
     {
-      "name": "Kajmi",
-      "balance": 1658,
-      "transactions": 71,
-      "reportedBalance": 1658
-    },
-    {
       "name": "Pumča",
-      "balance": 1424,
-      "transactions": 125,
-      "reportedBalance": 1424
+      "balance": 1158,
+      "transactions": 126,
+      "reportedBalance": 1158
     },
     {
       "name": "Hul mě hned",
@@ -39,22 +45,16 @@
       "reportedBalance": 1079
     },
     {
-      "name": "Anička",
-      "balance": 887,
-      "transactions": 118,
-      "reportedBalance": 887
-    },
-    {
       "name": "JJ",
       "balance": 842,
       "transactions": 14,
       "reportedBalance": 842
     },
     {
-      "name": "Aťourek",
-      "balance": 541,
-      "transactions": 124,
-      "reportedBalance": 541
+      "name": "Anička",
+      "balance": 729,
+      "transactions": 119,
+      "reportedBalance": 729
     },
     {
       "name": "Dexter",
@@ -69,13 +69,13 @@
       "reportedBalance": -252
     }
   ],
-  "cutTotal": 2208,
-  "total": 49565,
-  "rowsCounted": 173,
+  "cutTotal": 2262,
+  "total": 49511,
+  "rowsCounted": 174,
   "hasSumColumn": true,
   "ignoredColumns": [
-    "1851",
-    "49565",
+    "1905",
+    "49511",
     "51773"
   ],
   "mismatches": []

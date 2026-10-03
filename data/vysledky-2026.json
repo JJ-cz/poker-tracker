@@ -2,7 +2,7 @@
   "season": "2026",
   "year": 2026,
   "sheet": "Výsledky 2026",
-  "generatedAt": "2026-10-02T10:29:34.161Z",
+  "generatedAt": "2026-10-03T09:51:22.891Z",
   "sessions": [
     {
       "date": "2026-01-02",
@@ -11337,6 +11337,339 @@
           "addons": 100,
           "profit": -552,
           "sheetProfit": -552,
+          "profitMismatch": false
+        }
+      ]
+    },
+    {
+      "date": "2026-10-02",
+      "seq": 1,
+      "players": [
+        {
+          "name": "Anička",
+          "finish": 1,
+          "prize": 570,
+          "buyin": 52,
+          "rebuys": 100,
+          "addons": 100,
+          "profit": 318,
+          "sheetProfit": 318,
+          "profitMismatch": false
+        },
+        {
+          "name": "Aťourek",
+          "finish": 2,
+          "prize": 350,
+          "buyin": 52,
+          "rebuys": 0,
+          "addons": 100,
+          "profit": 198,
+          "sheetProfit": 198,
+          "profitMismatch": false
+        },
+        {
+          "name": "Jiří",
+          "finish": 3,
+          "prize": 230,
+          "buyin": 52,
+          "rebuys": 0,
+          "addons": 100,
+          "profit": 78,
+          "sheetProfit": 78,
+          "profitMismatch": false
+        },
+        {
+          "name": "Hensn",
+          "finish": 4,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 450,
+          "addons": 100,
+          "profit": -602,
+          "sheetProfit": -602,
+          "profitMismatch": false
+        }
+      ]
+    },
+    {
+      "date": "2026-10-02",
+      "seq": 2,
+      "players": [
+        {
+          "name": "Kajmi",
+          "finish": 1,
+          "prize": 1050,
+          "buyin": 52,
+          "rebuys": 350,
+          "addons": 100,
+          "profit": 548,
+          "sheetProfit": 548,
+          "profitMismatch": false
+        },
+        {
+          "name": "Pumča",
+          "finish": 2,
+          "prize": 630,
+          "buyin": 52,
+          "rebuys": 100,
+          "addons": 0,
+          "profit": 478,
+          "sheetProfit": 478,
+          "profitMismatch": false
+        },
+        {
+          "name": "Anička",
+          "finish": 3,
+          "prize": 420,
+          "buyin": 52,
+          "rebuys": 0,
+          "addons": 0,
+          "profit": 368,
+          "sheetProfit": 368,
+          "profitMismatch": false
+        },
+        {
+          "name": "Aťourek",
+          "finish": 4,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 400,
+          "addons": 100,
+          "profit": -552,
+          "sheetProfit": -552,
+          "profitMismatch": false
+        },
+        {
+          "name": "Hensn",
+          "finish": 5,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 300,
+          "addons": 100,
+          "profit": -452,
+          "sheetProfit": -452,
+          "profitMismatch": false
+        },
+        {
+          "name": "Jiří",
+          "finish": 6,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 250,
+          "addons": 100,
+          "profit": -402,
+          "sheetProfit": -402,
+          "profitMismatch": false
+        }
+      ]
+    },
+    {
+      "date": "2026-10-02",
+      "seq": 3,
+      "players": [
+        {
+          "name": "Aťourek",
+          "finish": 1,
+          "prize": 800,
+          "buyin": 52,
+          "rebuys": 100,
+          "addons": 100,
+          "profit": 548,
+          "sheetProfit": 548,
+          "profitMismatch": false
+        },
+        {
+          "name": "Hensn",
+          "finish": 2,
+          "prize": 480,
+          "buyin": 52,
+          "rebuys": 200,
+          "addons": 0,
+          "profit": 228,
+          "sheetProfit": 228,
+          "profitMismatch": false
+        },
+        {
+          "name": "Pumča",
+          "finish": 3,
+          "prize": 320,
+          "buyin": 52,
+          "rebuys": 200,
+          "addons": 100,
+          "profit": -32,
+          "sheetProfit": -32,
+          "profitMismatch": false
+        },
+        {
+          "name": "Anička",
+          "finish": 4,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 100,
+          "addons": 100,
+          "profit": -252,
+          "sheetProfit": -252,
+          "profitMismatch": false
+        },
+        {
+          "name": "Jiří",
+          "finish": 5,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 50,
+          "addons": 100,
+          "profit": -202,
+          "sheetProfit": -202,
+          "profitMismatch": false
+        },
+        {
+          "name": "Kajmi",
+          "finish": 6,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 150,
+          "addons": 100,
+          "profit": -302,
+          "sheetProfit": -302,
+          "profitMismatch": false
+        }
+      ]
+    },
+    {
+      "date": "2026-10-02",
+      "seq": 4,
+      "players": [
+        {
+          "name": "Aťourek",
+          "finish": 1,
+          "prize": 1220,
+          "buyin": 52,
+          "rebuys": 240,
+          "addons": 0,
+          "profit": 928,
+          "sheetProfit": 928,
+          "profitMismatch": false
+        },
+        {
+          "name": "Jiří",
+          "finish": 2,
+          "prize": 750,
+          "buyin": 52,
+          "rebuys": 50,
+          "addons": 120,
+          "profit": 528,
+          "sheetProfit": 528,
+          "profitMismatch": false
+        },
+        {
+          "name": "Hensn",
+          "finish": 3,
+          "prize": 500,
+          "buyin": 52,
+          "rebuys": 480,
+          "addons": 120,
+          "profit": -152,
+          "sheetProfit": -152,
+          "profitMismatch": false
+        },
+        {
+          "name": "Anička",
+          "finish": 4,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 420,
+          "addons": 120,
+          "profit": -592,
+          "sheetProfit": -592,
+          "profitMismatch": false
+        },
+        {
+          "name": "Pumča",
+          "finish": 5,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 540,
+          "addons": 120,
+          "profit": -712,
+          "sheetProfit": -712,
+          "profitMismatch": false
+        }
+      ]
+    },
+    {
+      "date": "2026-10-02",
+      "seq": 5,
+      "players": [
+        {
+          "name": "Aťourek",
+          "finish": 1,
+          "prize": 855,
+          "buyin": 52,
+          "rebuys": 675,
+          "addons": 150,
+          "profit": -22,
+          "sheetProfit": -22,
+          "profitMismatch": false
+        },
+        {
+          "name": "Hensn",
+          "finish": 2,
+          "prize": 570,
+          "buyin": 52,
+          "rebuys": 75,
+          "addons": 0,
+          "profit": 443,
+          "sheetProfit": 443,
+          "profitMismatch": false
+        },
+        {
+          "name": "Jiří",
+          "finish": 3,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 225,
+          "addons": 150,
+          "profit": -427,
+          "sheetProfit": -427,
+          "profitMismatch": false
+        }
+      ]
+    },
+    {
+      "date": "2026-10-02",
+      "seq": 6,
+      "players": [
+        {
+          "name": "Aťourek",
+          "finish": 1,
+          "prize": 955,
+          "buyin": 52,
+          "rebuys": 0,
+          "addons": 170,
+          "profit": 733,
+          "sheetProfit": 733,
+          "profitMismatch": false
+        },
+        {
+          "name": "Jiří",
+          "finish": 2,
+          "prize": 640,
+          "buyin": 52,
+          "rebuys": 340,
+          "addons": 170,
+          "profit": 78,
+          "sheetProfit": 78,
+          "profitMismatch": false
+        },
+        {
+          "name": "Hensn",
+          "finish": 3,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 595,
+          "addons": 170,
+          "profit": -817,
+          "sheetProfit": -817,
           "profitMismatch": false
         }
       ]
