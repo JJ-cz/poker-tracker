@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T11:56:51.067Z",
+  "generatedAt": "2026-10-13T11:45:45.443Z",
   "sheet": "Kredit",
   "players": [
     {
@@ -45,6 +45,12 @@
       "reportedBalance": 842
     },
     {
+      "name": "Pumča",
+      "balance": 452,
+      "transactions": 128,
+      "reportedBalance": 452
+    },
+    {
       "name": "Anička",
       "balance": 251,
       "transactions": 120,
@@ -57,12 +63,6 @@
       "reportedBalance": 154
     },
     {
-      "name": "Pumča",
-      "balance": -48,
-      "transactions": 127,
-      "reportedBalance": -48
-    },
-    {
       "name": "Martin",
       "balance": -252,
       "transactions": 32,
@@ -70,13 +70,13 @@
     }
   ],
   "cutTotal": 2302,
-  "total": 49471,
-  "rowsCounted": 175,
+  "total": 49971,
+  "rowsCounted": 177,
   "hasSumColumn": true,
   "ignoredColumns": [
     "1945",
-    "49471",
-    "51773"
+    "49971",
+    "52273"
   ],
   "mismatches": []
 }
