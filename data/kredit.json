@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-10-16T09:00:25.607Z",
+  "generatedAt": "2026-10-17T08:32:30.093Z",
   "sheet": "Kredit",
   "players": [
     {
-      "name": "Hensn",
-      "balance": 20543,
-      "transactions": 122,
-      "reportedBalance": 20543
+      "name": "Jiří",
+      "balance": 21532,
+      "transactions": 96,
+      "reportedBalance": 21532
     },
     {
-      "name": "Jiří",
-      "balance": 18658,
-      "transactions": 95,
-      "reportedBalance": 18658
+      "name": "Hensn",
+      "balance": 18717,
+      "transactions": 123,
+      "reportedBalance": 18717
     },
     {
       "name": "Aťourek",
-      "balance": 4012,
-      "transactions": 126,
-      "reportedBalance": 4012
+      "balance": 3036,
+      "transactions": 127,
+      "reportedBalance": 3036
     },
     {
       "name": "Kajmi",
@@ -33,6 +33,12 @@
       "reportedBalance": 1720
     },
     {
+      "name": "Anička",
+      "balance": 1319,
+      "transactions": 121,
+      "reportedBalance": 1319
+    },
+    {
       "name": "Hul mě hned",
       "balance": 1079,
       "transactions": 21,
@@ -45,18 +51,6 @@
       "reportedBalance": 842
     },
     {
-      "name": "Pumča",
-      "balance": 452,
-      "transactions": 128,
-      "reportedBalance": 452
-    },
-    {
-      "name": "Anička",
-      "balance": 251,
-      "transactions": 120,
-      "reportedBalance": 251
-    },
-    {
       "name": "Dexter",
       "balance": 154,
       "transactions": 1,
@@ -67,15 +61,21 @@
       "balance": -252,
       "transactions": 32,
       "reportedBalance": -252
+    },
+    {
+      "name": "Pumča",
+      "balance": -754,
+      "transactions": 129,
+      "reportedBalance": -754
     }
   ],
-  "cutTotal": 2302,
-  "total": 49971,
+  "cutTotal": 2368,
+  "total": 49905,
   "rowsCounted": 177,
   "hasSumColumn": true,
   "ignoredColumns": [
-    "1945",
-    "49971",
+    "2011",
+    "49905",
     "52273"
   ],
   "mismatches": []
