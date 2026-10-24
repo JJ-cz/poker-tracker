@@ -1,30 +1,30 @@
 {
-  "generatedAt": "2026-10-23T09:19:45.307Z",
+  "generatedAt": "2026-10-24T08:51:30.509Z",
   "sheet": "Kredit",
   "players": [
     {
       "name": "Jiří",
-      "balance": 21532,
-      "transactions": 96,
-      "reportedBalance": 21532
+      "balance": 23460,
+      "transactions": 97,
+      "reportedBalance": 23460
     },
     {
       "name": "Hensn",
-      "balance": 18717,
-      "transactions": 123,
-      "reportedBalance": 18717
+      "balance": 18380,
+      "transactions": 124,
+      "reportedBalance": 18380
+    },
+    {
+      "name": "Anička",
+      "balance": 1914,
+      "transactions": 122,
+      "reportedBalance": 1914
     },
     {
       "name": "Aťourek",
-      "balance": 3036,
-      "transactions": 127,
-      "reportedBalance": 3036
-    },
-    {
-      "name": "Kajmi",
-      "balance": 2512,
-      "transactions": 73,
-      "reportedBalance": 2512
+      "balance": 1804,
+      "transactions": 128,
+      "reportedBalance": 1804
     },
     {
       "name": "Ludovit",
@@ -33,10 +33,10 @@
       "reportedBalance": 1720
     },
     {
-      "name": "Anička",
-      "balance": 1319,
-      "transactions": 121,
-      "reportedBalance": 1319
+      "name": "Kajmi",
+      "balance": 1608,
+      "transactions": 74,
+      "reportedBalance": 1608
     },
     {
       "name": "Hul mě hned",
@@ -57,26 +57,26 @@
       "reportedBalance": 154
     },
     {
+      "name": "Pumča",
+      "balance": 142,
+      "transactions": 131,
+      "reportedBalance": 142
+    },
+    {
       "name": "Martin",
       "balance": -252,
       "transactions": 32,
       "reportedBalance": -252
-    },
-    {
-      "name": "Pumča",
-      "balance": -754,
-      "transactions": 129,
-      "reportedBalance": -754
     }
   ],
-  "cutTotal": 2368,
-  "total": 49905,
-  "rowsCounted": 177,
+  "cutTotal": 2422,
+  "total": 50851,
+  "rowsCounted": 179,
   "hasSumColumn": true,
   "ignoredColumns": [
-    "2011",
-    "49905",
-    "52273"
+    "2065",
+    "50851",
+    "53273"
   ],
   "mismatches": []
 }
