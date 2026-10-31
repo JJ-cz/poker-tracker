@@ -2,7 +2,7 @@
   "season": "2026",
   "year": 2026,
   "sheet": "Výsledky 2026",
-  "generatedAt": "2026-10-30T10:50:56.598Z",
+  "generatedAt": "2026-10-31T10:22:24.569Z",
   "sessions": [
     {
       "date": "2026-01-02",
@@ -12670,6 +12670,167 @@
           "addons": 200,
           "profit": -1052,
           "sheetProfit": -1052,
+          "profitMismatch": false
+        }
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "seq": 1,
+      "players": [
+        {
+          "name": "Hensn",
+          "finish": 1,
+          "prize": 800,
+          "buyin": 52,
+          "rebuys": 250,
+          "addons": 0,
+          "profit": 498,
+          "sheetProfit": 498,
+          "profitMismatch": false
+        },
+        {
+          "name": "Pumča",
+          "finish": 2,
+          "prize": 480,
+          "buyin": 52,
+          "rebuys": 100,
+          "addons": 100,
+          "profit": 228,
+          "sheetProfit": 228,
+          "profitMismatch": false
+        },
+        {
+          "name": "Anička",
+          "finish": 3,
+          "prize": 320,
+          "buyin": 52,
+          "rebuys": 450,
+          "addons": 100,
+          "profit": -282,
+          "sheetProfit": -282,
+          "profitMismatch": false
+        },
+        {
+          "name": "Aťourek",
+          "finish": 4,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 300,
+          "addons": 100,
+          "profit": -452,
+          "sheetProfit": -452,
+          "profitMismatch": false
+        }
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "seq": 2,
+      "players": [
+        {
+          "name": "Pumča",
+          "finish": 1,
+          "prize": 820,
+          "buyin": 52,
+          "rebuys": 200,
+          "addons": 100,
+          "profit": 468,
+          "sheetProfit": 468,
+          "profitMismatch": false
+        },
+        {
+          "name": "Hensn",
+          "finish": 2,
+          "prize": 500,
+          "buyin": 52,
+          "rebuys": 350,
+          "addons": 100,
+          "profit": -2,
+          "sheetProfit": -2,
+          "profitMismatch": false
+        },
+        {
+          "name": "Anička",
+          "finish": 3,
+          "prize": 330,
+          "buyin": 52,
+          "rebuys": 50,
+          "addons": 100,
+          "profit": 128,
+          "sheetProfit": 128,
+          "profitMismatch": false
+        },
+        {
+          "name": "Aťourek",
+          "finish": 4,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 450,
+          "addons": 100,
+          "profit": -602,
+          "sheetProfit": -602,
+          "profitMismatch": false
+        }
+      ]
+    },
+    {
+      "date": "2026-10-31",
+      "seq": 3,
+      "players": [
+        {
+          "name": "Jiří",
+          "finish": 1,
+          "prize": 870,
+          "buyin": 52,
+          "rebuys": 250,
+          "addons": 0,
+          "profit": 568,
+          "sheetProfit": 568,
+          "profitMismatch": false
+        },
+        {
+          "name": "Hensn",
+          "finish": 2,
+          "prize": 530,
+          "buyin": 52,
+          "rebuys": 0,
+          "addons": 100,
+          "profit": 378,
+          "sheetProfit": 378,
+          "profitMismatch": false
+        },
+        {
+          "name": "Aťourek",
+          "finish": 3,
+          "prize": 350,
+          "buyin": 52,
+          "rebuys": 250,
+          "addons": 100,
+          "profit": -52,
+          "sheetProfit": -52,
+          "profitMismatch": false
+        },
+        {
+          "name": "Anička",
+          "finish": 4,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 200,
+          "addons": 100,
+          "profit": -352,
+          "sheetProfit": -352,
+          "profitMismatch": false
+        },
+        {
+          "name": "Pumča",
+          "finish": 5,
+          "prize": 0,
+          "buyin": 52,
+          "rebuys": 500,
+          "addons": 0,
+          "profit": -552,
+          "sheetProfit": -552,
           "profitMismatch": false
         }
       ]
