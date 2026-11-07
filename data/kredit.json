@@ -1,24 +1,24 @@
 {
-  "generatedAt": "2026-11-06T12:04:39.721Z",
+  "generatedAt": "2026-11-07T11:01:46.984Z",
   "sheet": "Kredit",
   "players": [
     {
       "name": "Jiří",
-      "balance": 24028,
-      "transactions": 98,
-      "reportedBalance": 24028
+      "balance": 23145,
+      "transactions": 99,
+      "reportedBalance": 23145
     },
     {
       "name": "Hensn",
-      "balance": 19567,
-      "transactions": 126,
-      "reportedBalance": 19567
+      "balance": 19849,
+      "transactions": 127,
+      "reportedBalance": 19849
     },
     {
-      "name": "Kajmi",
-      "balance": 1951,
-      "transactions": 75,
-      "reportedBalance": 1951
+      "name": "Anička",
+      "balance": 2343,
+      "transactions": 125,
+      "reportedBalance": 2343
     },
     {
       "name": "Ludovit",
@@ -27,10 +27,10 @@
       "reportedBalance": 1720
     },
     {
-      "name": "Anička",
-      "balance": 1120,
-      "transactions": 124,
-      "reportedBalance": 1120
+      "name": "Kajmi",
+      "balance": 1257,
+      "transactions": 76,
+      "reportedBalance": 1257
     },
     {
       "name": "Hul mě hned",
@@ -45,16 +45,10 @@
       "reportedBalance": 842
     },
     {
-      "name": "Aťourek",
-      "balance": 300,
-      "transactions": 130,
-      "reportedBalance": 300
-    },
-    {
       "name": "Pumča",
-      "balance": 274,
-      "transactions": 133,
-      "reportedBalance": 274
+      "balance": 502,
+      "transactions": 134,
+      "reportedBalance": 502
     },
     {
       "name": "Dexter",
@@ -63,19 +57,25 @@
       "reportedBalance": 154
     },
     {
+      "name": "Aťourek",
+      "balance": 90,
+      "transactions": 131,
+      "reportedBalance": 90
+    },
+    {
       "name": "Martin",
       "balance": -252,
       "transactions": 32,
       "reportedBalance": -252
     }
   ],
-  "cutTotal": 2490,
-  "total": 50783,
-  "rowsCounted": 181,
+  "cutTotal": 2544,
+  "total": 50729,
+  "rowsCounted": 182,
   "hasSumColumn": true,
   "ignoredColumns": [
-    "2133",
-    "50783",
+    "2187",
+    "50729",
     "53273"
   ],
   "mismatches": []
